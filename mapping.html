@@ -66,6 +66,12 @@
     #openSidebar {
   transition: opacity 0.3s ease;
 }
+
+#openSidebar {
+  pointer-events: auto;
+  position: relative;
+  z-index: 9999;
+}
   </style>
 </head>
 <body class="flex flex-col md:flex-row">
@@ -85,9 +91,9 @@
   </nav>
 </aside>
 
-<!-- STICKY HAMBURGER WRAPPER (MOBILE ONLY) -->
-<div class="md:hidden sticky top-0 bg-[#111] z-50 px-4 py-2">
-  <button id="openSidebar" class="text-white text-3xl">
+<!-- MOBILE HAMBURGER (Sửa lại dùng fixed + z-index cao) -->
+<div class="md:hidden fixed top-0 left-0 w-full bg-[#111] z-[9999] px-4 py-3">
+  <button id="openSidebar" class="text-white text-3xl z-[9999] relative">
     &#9776;
   </button>
 </div>
