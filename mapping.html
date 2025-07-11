@@ -189,19 +189,21 @@ window.addEventListener('resize', () => {
 
   closeSidebarBtn.addEventListener('click', closeMobileSidebar);
 
-  // Lightbox
-  function openLightbox(src) {
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightbox-img');
-    lbImg.src = src;
-    lb.classList.add('active');
-  }
+// Lightbox
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  lbImg.src = src;
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden'; // ← THÊM DÒNG NÀY
+}
 
-  function closeLightbox() {
-    const lb = document.getElementById('lightbox');
-    lb.classList.remove('active');
-    document.getElementById('lightbox-img').src = '';
-  }
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('active');
+  document.getElementById('lightbox-img').src = '';
+  document.body.style.overflow = ''; // ← THÊM DÒNG NÀY
+}
 
 // Đóng sidebar nếu người dùng scroll khi đang mở (chỉ trên mobile)
 let lastScroll = 0;

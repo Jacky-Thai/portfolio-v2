@@ -220,22 +220,21 @@
     }
   });
 
-  // Lightbox
-  function openLightbox(src) {
-    const lightbox = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    img.src = src;
-    lightbox.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  }
+// Lightbox
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  lbImg.src = src;
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden'; // ← THÊM DÒNG NÀY
+}
 
-  function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    img.src = '';
-    lightbox.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('active');
+  document.getElementById('lightbox-img').src = '';
+  document.body.style.overflow = ''; // ← THÊM DÒNG NÀY
+}
 
   // Đóng sidebar nếu người dùng scroll khi đang mở (chỉ trên mobile)
 let lastScroll = 0;
