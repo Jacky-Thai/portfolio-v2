@@ -200,21 +200,23 @@
   <img src="./Image/Artboard GB.jpg" alt="Freelance Project 4" class="w-full h-auto" />
 </div>
 
-<!-- MODAL HIỂN 2 ẢNH 2 CỘT -->
-<div id="modal-artboard-gb"
-     class="gallery-modal fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex flex-col overflow-y-auto p-4"
-     onclick="handleOutsideClick(event, 'modal-artboard-gb')">
 
-  <!-- WRAPPER nội dung modal -->
-  <div class="modal-content relative max-w-6xl mx-auto w-full">
-    <!-- Nút Close -->
-  <button onclick="event.stopPropagation(); closeGalleryModal('modal-artboard-gb')"
-          class="modal-close-button sticky top-4 left-4 text-white text-3xl font-bold hover:text-gray-500 z-[9999]">
+<!-- Modal Wrapper -->
+<div id="modal-artboard-gb"
+     class="gallery-modal fixed inset-0 bg-black bg-opacity-90 z-50 hidden overflow-y-auto p-4 flex items-center justify-center"
+     onclick="handleModalBackdropClick(event, 'modal-artboard-gb')">
+
+  <!-- Modal content -->
+  <div class="modal-content relative max-w-7xl w-full" onclick="event.stopPropagation();">
+
+  <!-- Nút Close -->
+  <button onclick="closeGalleryModal('modal-artboard-gb')"
+          class="modal-close-button absolute top-4 left-6 text-white text-3xl font-bold hover:text-gray-500 z-50">
     &times;
   </button>
 
     <!-- Nội dung ảnh -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-10 items-center justify-items-center">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-2 items-center justify-items-center">
       <img src="./Image/Poster GB.png" alt="Detail 1" class="w-full sm:w-[95%] max-w-3xl rounded-xl shadow-lg object-contain" />
       <img src="./Image/Thong bao GB.png" alt="Detail 2" class="w-full sm:w-[95%] max-w-3xl rounded-xl shadow-lg object-contain" />
     </div>
@@ -229,7 +231,7 @@
 <!-- LIGHTBOX -->
 <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-95 hidden z-50 flex flex-col">
   <!-- Close Button -->
-  <button onclick="closeLightbox()" class="absolute top-6 left-10 text-white text-3xl font-bold hover:text-gray-500 z-50">
+  <button onclick="closeLightbox()" class="absolute top-6 left-6 text-white text-3xl font-bold hover:text-gray-500 z-50">
     &times;
   </button>
   <!-- Image Viewer -->
@@ -356,6 +358,9 @@ function openGalleryModal(id) {
   modal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 
+  // Reset scroll về đầu mỗi khi mở lại modal
+  modal.scrollTop = 0;
+
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.add('hidden');
 }
@@ -387,6 +392,16 @@ function handleOutsideClick(e, modalId) {
 
   // Nếu click nằm ngoài phần content (vùng đen)
   if (!content.contains(e.target)) {
+    closeGalleryModal(modalId);
+  }
+}
+
+function handleModalBackdropClick(e, modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+
+  // Nếu click vào chính phần tử modal (tức là vùng nền đen)
+  if (e.target === modal) {
     closeGalleryModal(modalId);
   }
 }
