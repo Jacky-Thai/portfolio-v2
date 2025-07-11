@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    #openSidebar {
+      transition: opacity 0.3s ease;
+    }
+  </style>
+</head>
+<body class="flex flex-col md:flex-row">
+
+<!-- SIDEBAR -->
+<aside id="sidebar"
+  class="bg-[#111] text-white w-48 p-6 fixed top-0 left-0 z-50 h-full md:h-screen md:sticky md:flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out hidden">
+  <div class="text-2xl font-bold mb-10 flex justify-between items-center">
+    My Portfolio
+    <button id="closeSidebar" class="md:hidden text-2xl">&times;</button>
+  </div>
+  <nav class="space-y-4 font-semibold">
+    <a href="index.html" class="block hover:text-gray-500">About Me</a>
+    <a href="personal.html" class="block hover:text-gray-500">Personal Project</a>
+    <a href="freelance.html" class="block hover:text-gray-500">Freelance Project</a>
+    <a href="mapping.html" class="block hover:text-gray-500">Indoor Mapping</a>
+  </nav>
+</aside>
+
+<!-- MOBILE HAMBURGER -->
+<div class="md:hidden sticky top-0 bg-[#111] z-50 px-4 py-3">
+  <button id="openSidebar" class="text-white text-3xl">
+    &#9776;
+  </button>
+</div>
+
+<!-- BACKDROP -->
+<div id="backdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 md:hidden" onclick="closeMobileSidebar()"></div>
+
+<!-- MAIN CONTENT -->
+<main class="flex-1 md:ml-0 px-0 py-0 space-y-0">
+  <!-- Full Height Hero Section -->
+  <section class="relative w-full h-screen overflow-hidden">
+    <img src="./Image/Bg-orange.jpg" alt="Background"
+         class="absolute top-0 left-0 w-full h-full object-cover z-0" />
+    <img src="./Image/Portfolio-text.png" alt="Portfolio"
+         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-[600px] z-10" />
+  </section>
+
+  <!-- CV Section -->
+<section class="w-full">
+  <img src="./Image/CV.jpg" alt="About Me CV" class="w-full h-auto" />
+</section>
+
+</main>
+
+<!-- JS -->
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const openSidebarBtn = document.getElementById('openSidebar');
+  const closeSidebarBtn = document.getElementById('closeSidebar');
+  const backdrop = document.getElementById('backdrop');
+
+  // Mobile sidebar open
+  openSidebarBtn.addEventListener('click', () => {
+    sidebar.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      sidebar.classList.remove('-translate-x-full');
+    });
+    backdrop.classList.remove('hidden');
+    openSidebarBtn.classList.add('hidden');
+  });
+
+  // Mobile sidebar close
+  function closeMobileSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    backdrop.classList.add('hidden');
+    openSidebarBtn.classList.remove('hidden');
+    setTimeout(() => sidebar.classList.add('hidden'), 300);
+  }
+
+  closeSidebarBtn.addEventListener('click', closeMobileSidebar);
+
+  // Khi resize lên desktop thì reset
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      sidebar.classList.remove('hidden', '-translate-x-full');
+      openSidebarBtn.classList.add('hidden');
+    } else {
+      sidebar.classList.add('hidden', '-translate-x-full');
+      openSidebarBtn.classList.remove('hidden');
+    }
+  });
+  
+  // Đóng sidebar nếu người dùng scroll khi đang mở (chỉ trên mobile)
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const isMobile = window.innerWidth < 768;
+  const isSidebarVisible = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+
+  if (isMobile && isSidebarVisible) {
+    const currentScroll = window.scrollY;
+
+    // Nếu người dùng scroll xuống dưới ít nhất 20px
+    if (Math.abs(currentScroll - lastScroll) > 20) {
+      closeMobileSidebar();
+    }
+
+    lastScroll = currentScroll;
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const isMobile = window.innerWidth < 768;
+  const isSidebarVisible = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+
+  if (isMobile && isSidebarVisible) {
+    closeMobileSidebar();
+  }
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indoor Mapping</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    .card {
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .card img {
+      transition: filter 0.3s ease;
+    }
+
+    .card:hover img {
+      filter: grayscale(100%);
+    }
+
+    .lightbox, .gallery-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .lightbox.active,
+    .gallery-modal.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lightbox img, .gallery-modal img {
+      max-width: 100%;
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    #openSidebar {
+  transition: opacity 0.3s ease;
+}
+  </style>
+</head>
+<body class="flex flex-col md:flex-row">
+
+<!-- SIDEBAR (Desktop + Mobile Slide) -->
+<aside id="sidebar"
+  class="bg-[#111] text-white w-48 p-6 fixed top-0 left-0 z-50 h-full md:h-screen md:sticky md:flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out hidden">
+  <div class="text-2xl font-bold mb-10 flex justify-between items-center">
+    My Portfolio
+    <button id="closeSidebar" class="md:hidden text-2xl">&times;</button>
+  </div>
+  <nav class="space-y-4 font-semibold">
+    <a href="index.html" class="block hover:text-gray-500">About Me</a>
+    <a href="personal.html" class="block hover:text-gray-500">Personal Project</a>
+    <a href="freelance.html" class="block hover:text-gray-500">Freelance Project</a>
+    <a href="mapping.html" class="block hover:text-gray-500">Indoor Mapping</a>
+  </nav>
+</aside>
+
+<!-- STICKY HAMBURGER WRAPPER (MOBILE ONLY) -->
+<div class="md:hidden sticky top-0 bg-[#111] z-50 px-4 py-2">
+  <button id="openSidebar" class="text-white text-3xl">
+    &#9776;
+  </button>
+</div>
+
+<!-- BACKDROP (Mobile) -->
+<div id="backdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 md:hidden" onclick="closeMobileSidebar()"></div>
+
+<!-- MAIN CONTENT -->
+<main class="flex-1 md:ml-10 px-4 py-10 grid grid-cols-1 gap-y-6 sm:gap-x-6">
+
+  <!-- Card 1 -->
+  <div class="group transition duration-300 ease-in-out hover:scale-105">
+    <div class="aspect-[16/9] bg-black overflow-hidden rounded-xl cursor-pointer" onclick="openLightbox('./Image/FP.jpg')">
+      <img src="./Image/FP.jpg" alt="Mapping 1"
+           class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:grayscale rounded-xl" />
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="group transition duration-300 ease-in-out hover:scale-105">
+    <div class="aspect-[16/9] bg-black overflow-hidden rounded-xl cursor-pointer" onclick="openLightbox('./Image/CS.jpg')">
+      <img src="./Image/CS.jpg" alt="Mapping 2"
+           class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:grayscale rounded-xl" />
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="group transition duration-300 ease-in-out hover:scale-105">
+    <div class="aspect-[16/9] bg-black overflow-hidden rounded-xl cursor-pointer" onclick="openLightbox('./Image/demo 1.jpg')">
+      <img src="./Image/demo 1.jpg" alt="Mapping 3"
+           class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:grayscale rounded-xl" />
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="group transition duration-300 ease-in-out hover:scale-105">
+    <div class="aspect-[16/9] bg-black overflow-hidden rounded-xl cursor-pointer" onclick="openLightbox('./Image/demo 2.jpg')">
+      <img src="./Image/demo 2.jpg" alt="Mapping 4"
+           class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:grayscale rounded-xl" />
+    </div>
+  </div>
+
+</main>
+
+
+
+<!-- LIGHTBOX -->
+<div id="lightbox"
+    class="lightbox hidden z-50">
+
+  <!-- CLOSE BUTTON (top-left, không có vòng tròn) -->
+  <button onclick="closeLightbox()"
+    class="absolute top-4 left-8 text-white text-3xl font-bold hover:text-gray-500 z-50 transition">
+    &times;
+  </button>
+
+  <!-- IMAGE PREVIEW -->
+  <div class="flex-1 flex items-center justify-center p-2 sm:p-6">
+    <img id="lightbox-img"
+        src=""
+        alt="Preview"
+        class="max-w-full max-h-[90vh] rounded-xl shadow-lg object-contain" />
+  </div>
+</div>
+
+
+<!-- JS -->
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const openSidebarBtn = document.getElementById('openSidebar');
+  const closeSidebarBtn = document.getElementById('closeSidebar');
+  const backdrop = document.getElementById('backdrop');
+
+// Mobile sidebar open
+openSidebarBtn.addEventListener('click', () => {
+  sidebar.classList.remove('hidden');
+  requestAnimationFrame(() => {
+    sidebar.classList.remove('-translate-x-full');
+  });
+  backdrop.classList.remove('hidden');
+  openSidebarBtn.classList.add('hidden');
+});
+
+  // Mobile sidebar close
+function closeMobileSidebar() {
+  sidebar.classList.add('-translate-x-full');
+  backdrop.classList.add('hidden');
+  openSidebarBtn.classList.remove('hidden'); // Hiện lại icon hamburger
+  setTimeout(() => sidebar.classList.add('hidden'), 300);
+}
+// Nếu resize lại từ mobile lên desktop thì hiện lại sidebar
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 768) {
+    sidebar.classList.remove('hidden', '-translate-x-full');
+  } else {
+    sidebar.classList.add('hidden', '-translate-x-full');
+  }
+});
+
+  closeSidebarBtn.addEventListener('click', closeMobileSidebar);
+
+  // Lightbox
+  function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    lbImg.src = src;
+    lb.classList.add('active');
+  }
+
+  function closeLightbox() {
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('active');
+    document.getElementById('lightbox-img').src = '';
+  }
+
+// Đóng sidebar nếu người dùng scroll khi đang mở (chỉ trên mobile)
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const isMobile = window.innerWidth < 768;
+  const isSidebarVisible = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+
+  if (isMobile && isSidebarVisible) {
+    const currentScroll = window.scrollY;
+
+    // Nếu người dùng scroll xuống dưới ít nhất 20px
+    if (Math.abs(currentScroll - lastScroll) > 20) {
+      closeMobileSidebar();
+    }
+
+    lastScroll = currentScroll;
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const isMobile = window.innerWidth < 768;
+  const isSidebarVisible = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+
+  if (isMobile && isSidebarVisible) {
+    closeMobileSidebar();
+  }
+});
+
+</script>
+</body>
+</html>

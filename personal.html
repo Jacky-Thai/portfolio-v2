@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Projects</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    .card {
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .card img {
+      transition: filter 0.3s ease;
+    }
+
+    .card:hover img {
+      filter: grayscale(100%);
+    }
+
+    .lightbox, .gallery-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .lightbox.active,
+    .gallery-modal.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lightbox img, .gallery-modal img {
+      max-width: 100%;
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    #openSidebar {
+  transition: opacity 0.3s ease;
+}
+
+.gallery-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.gallery-modal.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container ảnh */
+.gallery-modal .content-scroll {
+  max-height: 90vh;
+  max-width: 70vw;
+  overflow-y: auto;
+  padding-right: 8px; /* tránh nhảy layout */
+  scrollbar-width: none; /* Firefox */
+}
+.gallery-modal .content-scroll::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.gallery-modal img {
+  max-width: 100%;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+  </style>
+</head>
+<body class="flex flex-col md:flex-row">
+
+<!-- SIDEBAR (Desktop + Mobile Slide) -->
+<aside id="sidebar"
+  class="bg-[#111] text-white w-48 p-6 fixed top-0 left-0 z-50 h-full md:h-screen md:sticky md:flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out hidden">
+  <div class="text-2xl font-bold mb-10 flex justify-between items-center">
+    My Portfolio
+    <button id="closeSidebar" class="md:hidden text-2xl">&times;</button>
+  </div>
+  <nav class="space-y-4 font-semibold">
+    <a href="index.html" class="block hover:text-gray-500">About Me</a>
+    <a href="personal.html" class="block hover:text-gray-500">Personal Project</a>
+    <a href="freelance.html" class="block hover:text-gray-500">Freelance Project</a>
+    <a href="mapping.html" class="block hover:text-gray-500">Indoor Mapping</a>
+  </nav>
+</aside>
+
+<!-- STICKY HAMBURGER WRAPPER (MOBILE ONLY) -->
+<div class="md:hidden sticky top-0 bg-[#111] z-50 px-4 py-2">
+  <button id="openSidebar" class="text-white text-3xl">
+    &#9776;
+  </button>
+</div>
+
+<!-- BACKDROP (Mobile) -->
+<div id="backdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 md:hidden" onclick="closeMobileSidebar()"></div>
+
+<!-- MAIN CONTENT -->
+<main class="flex-1 md:ml-10 px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+
+  <!-- CARD IMAGE -->
+  <div class="card" onclick="openLightbox('./Image/8.3.jpg')">
+    <img src="./Image/8.3.jpg" alt="Project 1" class="w-full h-auto rounded-xl" />
+  </div>
+  <div class="card" onclick="openLightbox('./Image/uudai.jpg')">
+    <img src="./Image/uudai.jpg" alt="Project 2" class="w-full h-auto rounded-xl" />
+  </div>
+  <div class="card" onclick="openLightbox('./Image/mungdaile.jpg')">
+    <img src="./Image/mungdaile.jpg" alt="Project 3" class="w-full h-auto rounded-xl" />
+  </div>
+  <div class="card" onclick="openLightbox('./Image/dauthangluongve.jpg')">
+    <img src="./Image/dauthangluongve.jpg" alt="Project 4" class="w-full h-auto rounded-xl" />
+  </div>
+
+<!-- CARD mở gallery -->
+<div class="card" onclick="openGalleryModal('gallery-gaming')">
+  <img src="./Image/Gaming.jpg" alt="Project 5" class="w-full h-auto rounded-xl" />
+</div>
+
+<!-- MODAL SCROLL DỌC -->
+<div id="gallery-gaming" class="gallery-modal hidden">
+  <button onclick="closeGalleryModal('gallery-gaming')" class="text-white text-3xl absolute top-6 right-8 font-bold hover:text-gray-400">
+    &times;
+  </button>
+
+  <div class="content-scroll mx-auto mt-12">
+    <img src="./Image/4.jpg" alt="Detail 1" />
+    <img src="./Image/5.jpg" alt="Detail 2" />
+    <img src="./Image/2.jpg" alt="Detail 3" />
+    <img src="./Image/3.jpg" alt="Detail 4" />
+    <img src="./Image/6.jpg" alt="Detail 5" />
+    <img src="./Image/1.jpg" alt="Detail 6" />
+  </div>
+</div>
+
+  <!-- VIDEO -->
+  <div class="card relative" onclick="fullscreenVimeo()">
+    <div style="padding-top: 56.25%; position: relative;">
+      <iframe id="vimeo-player" src="https://player.vimeo.com/video/1100196278?autoplay=0&muted=1"
+        class="absolute top-0 left-0 w-full h-full rounded-xl"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- MORE CARDS -->
+<div class="card" onclick="openLightbox('./Image/Cocoon.jpg')">
+  <div class="w-full aspect-[16/9] overflow-hidden rounded-xl">
+    <img src="./Image/Cocoon.jpg" alt="Project 6"
+        class="w-full h-full object-cover object-center" />
+  </div>
+</div>
+
+<div class="card" onclick="openLightbox('./Image/Menu.jpg')">
+  <div class="w-full aspect-[16/9] overflow-hidden rounded-xl">
+    <img src="./Image/Menu.jpg" alt="Project 7"
+        class="w-full h-full object-cover object-center" />
+  </div>
+
+</div>
+  <div class="card" onclick="openLightbox('./Image/illustration.jpg')">
+    <img src="./Image/illustration.jpg" alt="Project 8" class="w-full h-auto rounded-xl" />
+  </div>
+  <div class="card" onclick="openLightbox('./Image/line illustration.jpg')">
+    <img src="./Image/line illustration.jpg" alt="Project 9" class="w-full h-auto rounded-xl" />
+  </div>
+</main>
+
+<!-- LIGHTBOX -->
+<div id="lightbox"
+    class="lightbox hidden z-50">
+
+  <!-- CLOSE BUTTON (top-left, không có vòng tròn) -->
+  <button onclick="closeLightbox()"
+    class="absolute top-4 left-8 text-white text-3xl font-bold hover:text-gray-500 z-50 transition">
+    &times;
+  </button>
+
+  <!-- IMAGE PREVIEW -->
+  <div class="flex-1 flex items-center justify-center p-2 sm:p-6">
+    <img id="lightbox-img"
+        src=""
+        alt="Preview"
+        class="max-w-full max-h-[90vh] rounded-xl shadow-lg object-contain" />
+  </div>
+</div>
+
+
+<!-- JS -->
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const openSidebarBtn = document.getElementById('openSidebar');
+  const closeSidebarBtn = document.getElementById('closeSidebar');
+  const backdrop = document.getElementById('backdrop');
+
+// Mobile sidebar open
+openSidebarBtn.addEventListener('click', () => {
+  sidebar.classList.remove('hidden');
+  requestAnimationFrame(() => {
+    sidebar.classList.remove('-translate-x-full');
+  });
+  backdrop.classList.remove('hidden');
+  openSidebarBtn.classList.add('hidden');
+});
+
+  // Mobile sidebar close
+function closeMobileSidebar() {
+  sidebar.classList.add('-translate-x-full');
+  backdrop.classList.add('hidden');
+  openSidebarBtn.classList.remove('hidden'); // Hiện lại icon hamburger
+  setTimeout(() => sidebar.classList.add('hidden'), 300);
+}
+// Nếu resize lại từ mobile lên desktop thì hiện lại sidebar
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 768) {
+    sidebar.classList.remove('hidden', '-translate-x-full');
+  } else {
+    sidebar.classList.add('hidden', '-translate-x-full');
+  }
+});
+
+  closeSidebarBtn.addEventListener('click', closeMobileSidebar);
+
+  // Lightbox
+  function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    lbImg.src = src;
+    lb.classList.add('active');
+  }
+
+  function closeLightbox() {
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('active');
+    document.getElementById('lightbox-img').src = '';
+  }
+
+  // Gallery scroll modal
+  function openGalleryModal(id) {
+    document.getElementById(id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGalleryModal(id) {
+    document.getElementById(id).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function fullscreenVimeo() {
+    const player = document.getElementById('vimeo-player');
+    const message = { method: 'requestFullscreen' };
+    player.contentWindow.postMessage(JSON.stringify(message), '*');
+  }
+
+  // Auto fullscreen when video starts playing
+document.addEventListener("DOMContentLoaded", function () {
+  const iframe = document.getElementById("vimeo-player");
+  const player = new Vimeo.Player(iframe);
+
+  player.on('play', function () {
+    // Gửi lệnh fullscreen sau khi play
+    iframe.contentWindow.postMessage(
+      JSON.stringify({ method: 'requestFullscreen' }),
+      '*'
+    );
+  });
+});
+
+function openGalleryModal(id) {
+  const modal = document.getElementById(id);
+  const scrollable = modal.querySelector('.content-scroll');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  scrollable.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+  function closeGalleryModal(id) {
+    document.getElementById(id).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+   // Thoát Lightbox và Gallery Modal khi bấm ESC
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeLightbox();
+      document.querySelectorAll('.gallery-modal.active').forEach(modal => {
+        modal.classList.remove('active');
+      });
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Đóng sidebar nếu người dùng scroll khi đang mở (chỉ trên mobile)
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const isMobile = window.innerWidth < 768;
+  const isSidebarVisible = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+
+  if (isMobile && isSidebarVisible) {
+    const currentScroll = window.scrollY;
+
+    // Nếu người dùng scroll xuống dưới ít nhất 20px
+    if (Math.abs(currentScroll - lastScroll) > 20) {
+      closeMobileSidebar();
+    }
+
+    lastScroll = currentScroll;
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const isMobile = window.innerWidth < 768;
+  const isSidebarVisible = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+
+  if (isMobile && isSidebarVisible) {
+    closeMobileSidebar();
+  }
+});
+
+</script>
+</body>
+</html>

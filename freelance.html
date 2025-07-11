@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freelance Projects</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #111;
+    color: white;
+    font-family: sans-serif;
+  }
+  .card {
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+  }
+  .card img {
+    transition: filter 0.3s ease;
+  }
+  .card:hover img {
+    filter: grayscale(100%);
+  }
+  #openSidebar {
+    transition: opacity 0.3s ease;
+  }
+</style>
+
+</head>
+<body class="flex flex-col md:flex-row">
+
+<!-- SIDEBAR -->
+<aside id="sidebar"
+  class="bg-[#111] text-white w-48 p-6 fixed top-0 left-0 z-50 h-full md:h-screen md:sticky md:flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out hidden">
+  <div class="text-2xl font-bold mb-10 flex justify-between items-center">
+    My Portfolio
+    <button id="closeSidebar" class="md:hidden text-2xl">&times;</button>
+  </div>
+  <nav class="space-y-4 font-semibold">
+    <a href="index.html" class="block hover:text-gray-500">About Me</a>
+    <a href="personal.html" class="block hover:text-gray-500">Personal Project</a>
+    <a href="freelance.html" class="block hover:text-gray-500">Freelance Project</a>
+    <a href="mapping.html" class="block hover:text-gray-500">Indoor Mapping</a>
+  </nav>
+</aside>
+
+<!-- MOBILE HAMBURGER -->
+<div class="md:hidden sticky top-0 bg-[#111] z-50 px-4 py-3">
+  <button id="openSidebar" class="text-white text-3xl">&#9776;</button>
+</div>
+
+<!-- BACKDROP -->
+<div id="backdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 md:hidden" onclick="closeMobileSidebar()"></div>
+
+<!-- MAIN CONTENT -->
+<main class="flex-1 md:ml-10 px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+
+  <!-- Video Cards -->
+  <div class="card">
+    <div style="padding-top:49.95%;position:relative;">
+      <iframe src="https://player.vimeo.com/video/1087056986?h=82fd2515e2&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Đoàn Lôtô"></iframe>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="padding-top:49.95%;position:relative;">
+      <iframe src="https://player.vimeo.com/video/1087056868?h=f6c2a0ee5b&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Chị ba nhảy múa"></iframe>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="padding-top:56.25%;position:relative;">
+      <iframe src="https://player.vimeo.com/video/1087056827?h=95e44bdd9c&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="BG Loto"></iframe>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="padding-top:56.25%;position:relative;">
+      <iframe src="https://player.vimeo.com/video/1087057007?h=73988e9c75&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="All For WinWin"></iframe>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="padding-top:56.25%;position:relative;">
+      <iframe src="https://player.vimeo.com/video/1087158330?h=931c51ad61&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Logo Intro"></iframe>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="padding-top:56.25%;position:relative;">
+      <iframe src="https://player.vimeo.com/video/1087062616?h=59c394aba7&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Recap 0503"></iframe>
+    </div>
+  </div>
+
+  <!-- Image Cards with Lightbox -->
+  <div class="card" onclick="openLightbox('./Image/Weeding.jpg')">
+    <img src="./Image/Weeding.jpg" alt="Freelance Project 0" class="w-full h-auto" />
+  </div>
+  <div class="card" onclick="openLightbox('./Image/spe-party.jpg')">
+    <img src="./Image/spe-party.jpg" alt="Freelance Project 1" class="w-full h-auto" />
+  </div>
+  <div class="card" onclick="openLightbox('./Image/Artboard HPM.jpg')">
+    <img src="./Image/Artboard HPM.jpg" alt="Freelance Project 2" class="w-full h-auto" />
+  </div>
+  <div class="card" onclick="openLightbox('./Image/Artboard BTC.jpg')">
+    <img src="./Image/Artboard BTC.jpg" alt="Freelance Project 3" class="w-full h-auto" />
+  </div>
+  <div class="card" onclick="openLightbox('./Image/Artboard GB.jpg')">
+    <img src="./Image/Artboard GB.jpg" alt="Freelance Project 4" class="w-full h-auto" />
+  </div>
+  <div class="card" onclick="openLightbox('./Image/Artboard LHVN.jpg')">
+    <img src="./Image/Artboard LHVN.jpg" alt="Freelance Project 5" class="w-full h-auto" />
+  </div>
+</main>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-95 hidden z-50 flex flex-col">
+  <!-- Close Button -->
+  <button onclick="closeLightbox()" class="absolute top-4 left-4 text-white text-3xl font-bold hover:text-gray-500 z-50">
+    &times;
+  </button>
+  <!-- Image Viewer -->
+  <div class="flex-1 flex items-center justify-center p-4">
+    <img id="lightbox-img" src="" alt="Preview" class="max-w-full max-h-[90vh] rounded-xl shadow-xl object-contain" />
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const openSidebarBtn = document.getElementById('openSidebar');
+  const closeSidebarBtn = document.getElementById('closeSidebar');
+  const backdrop = document.getElementById('backdrop');
+
+  openSidebarBtn.addEventListener('click', () => {
+    sidebar.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      sidebar.classList.remove('-translate-x-full');
+    });
+    backdrop.classList.remove('hidden');
+    openSidebarBtn.classList.add('hidden');
+  });
+
+  function closeMobileSidebar() {
+    sidebar.classList.add('-translate-x-full');
+    backdrop.classList.add('hidden');
+    openSidebarBtn.classList.remove('hidden');
+    setTimeout(() => sidebar.classList.add('hidden'), 300);
+  }
+
+  closeSidebarBtn?.addEventListener('click', closeMobileSidebar);
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      sidebar.classList.remove('hidden', '-translate-x-full');
+      openSidebarBtn.classList.add('hidden');
+    } else {
+      sidebar.classList.add('hidden', '-translate-x-full');
+      openSidebarBtn.classList.remove('hidden');
+    }
+  });
+
+  // Lightbox
+  function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = '';
+    lightbox.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  // Đóng sidebar nếu người dùng scroll khi đang mở (chỉ trên mobile)
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const isMobile = window.innerWidth < 768;
+  const isSidebarVisible = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+
+  if (isMobile && isSidebarVisible) {
+    const currentScroll = window.scrollY;
+
+    // Nếu người dùng scroll xuống dưới ít nhất 20px
+    if (Math.abs(currentScroll - lastScroll) > 20) {
+      closeMobileSidebar();
+    }
+
+    lastScroll = currentScroll;
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const isMobile = window.innerWidth < 768;
+  const isSidebarVisible = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+
+  if (isMobile && isSidebarVisible) {
+    closeMobileSidebar();
+  }
+});
+
+</script>
+
+<!-- Vimeo -->
+<script src="https://player.vimeo.com/api/player.js"></script>
+</body>
+</html>
