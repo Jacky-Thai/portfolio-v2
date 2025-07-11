@@ -108,6 +108,54 @@
   z-index: 9999;
 }
 
+.gallery-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.95);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: auto;
+}
+
+.gallery-modal.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-modal .scroll-x {
+  overflow-x: auto;
+  -ms-overflow-style: none;  /* IE + Edge */
+  scrollbar-width: none;     /* Firefox */
+  user-select: none; /* Ngăn chọn chữ */
+}
+.gallery-modal .scroll-x::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari */
+}
+
+.scroll-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
+.cursor-grab {
+  cursor: grab;
+}
+
+.cursor-grabbing {
+  cursor: grabbing;
+}
+
   </style>
 </head>
 <body class="flex flex-col md:flex-row">
@@ -161,7 +209,7 @@
 
 <!-- MODAL SCROLL DỌC -->
 <div id="gallery-gaming" class="gallery-modal hidden">
-  <button onclick="closeGalleryModal('gallery-gaming')" class="text-white text-3xl absolute top-6 right-8 font-bold hover:text-gray-400">
+  <button onclick="closeGalleryModal('gallery-gaming')" class="text-white text-3xl absolute top-6 left-8 font-bold hover:text-gray-400">
     &times;
   </button>
 
@@ -197,10 +245,28 @@
 
 
   <!-- MORE CARDS -->
-<div class="card" onclick="openLightbox('./Image/Cocoon.jpg')">
+<div class="card" onclick="openGalleryModal('gallery-cocoon')">
   <div class="w-full aspect-[16/9] overflow-hidden rounded-xl">
     <img src="./Image/Cocoon.jpg" alt="Project 6"
         class="w-full h-full object-cover object-center" />
+  </div>
+</div>
+
+<!-- GALLERY MODAL SCROLL NGANG -->
+<div id="gallery-cocoon" class="gallery-modal hidden">
+  <!-- Close Button -->
+  <button onclick="closeGalleryModal('gallery-cocoon')"
+    class="absolute top-4 left-8 text-white text-3xl font-bold hover:text-gray-500 z-50 transition">
+    &times;
+  </button>
+
+  <!-- Horizontal Scroll Container -->
+  <div class="scroll-x flex gap-4 max-w-full p-6">
+    <img src="./Image/Cocoon_1.jpg" alt="Cocoon 1" class="max-h-[80vh] rounded-xl object-contain" />
+    <img src="./Image/Cocoon_2.jpg" alt="Cocoon 2" class="max-h-[80vh] rounded-xl object-contain" />
+    <img src="./Image/Cocoon_3.jpg" alt="Cocoon 3" class="max-h-[80vh] rounded-xl object-contain" />
+    <img src="./Image/Cocoon_4.jpg" alt="Cocoon 4" class="max-h-[80vh] rounded-xl object-contain" />
+    <img src="./Image/Cocoon_5.jpg" alt="Cocoon 4" class="max-h-[80vh] rounded-xl object-contain" />
   </div>
 </div>
 
@@ -334,13 +400,17 @@ function openGalleryModal(id) {
   const scrollable = modal.querySelector('.content-scroll');
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
-  scrollable.scrollTo({ top: 0, behavior: 'instant' });
+
+  // Cuộn về đầu modal
+  if (scrollable?.scrollTo) {
+    scrollable.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  // ✅ Ẩn hamburger khi mở modal
+  const hamburger = document.getElementById('hamburgerBar');
+  if (hamburger) hamburger.classList.add('hidden');
 }
 
-  function closeGalleryModal(id) {
-    document.getElementById(id).classList.remove('active');
-    document.body.style.overflow = '';
-  }
 
    // Thoát Lightbox và Gallery Modal khi bấm ESC
   document.addEventListener('keydown', function (e) {
@@ -398,6 +468,71 @@ document.addEventListener('touchstart', function (e) {
     closeMobileSidebar();
   }
 });
+
+// Enable drag-scroll for horizontal gallery
+document.querySelectorAll('.scroll-x').forEach(container => {
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  // Bắt sự kiện đúng lớp scroll-x chứ không phải con
+  container.addEventListener('mousedown', (e) => {
+    e.preventDefault(); // ← Ngăn ảnh hoặc DOM con gây cản trở
+    isDown = true;
+    startX = e.pageX - container.offsetLeft;
+    scrollLeft = container.scrollLeft;
+    container.classList.add('cursor-grabbing');
+  }, { passive: false });
+
+  container.addEventListener('mouseleave', () => {
+    isDown = false;
+    container.classList.remove('cursor-grabbing');
+  });
+
+  container.addEventListener('mouseup', () => {
+    isDown = false;
+    container.classList.remove('cursor-grabbing');
+  });
+
+  container.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startX) * 1.5; // Điều chỉnh tốc độ
+    container.scrollLeft = scrollLeft - walk;
+  }, { passive: false });
+
+  // Đặt sẵn cursor để UX tốt
+  container.classList.add('cursor-grab');
+});
+
+// Open modal gallery
+function openGalleryModal(id) {
+  const modal = document.getElementById(id);
+  const scrollable = modal.querySelector('.content-scroll, .scroll-x');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // Reset scroll về đầu
+  if (scrollable?.scrollTo) {
+    scrollable.scrollTo({ left: 0, top: 0 });
+  }
+
+  // Ẩn hamburger icon khi gallery mở
+  const hamburger = document.getElementById('hamburgerBar');
+  if (hamburger) hamburger.classList.add('hidden');
+}
+
+// Close modal gallery
+function closeGalleryModal(id) {
+  const modal = document.getElementById(id);
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+
+  // Hiện lại hamburger icon khi gallery đóng
+  const hamburger = document.getElementById('hamburgerBar');
+  if (hamburger) hamburger.classList.remove('hidden');
+}
 
 </script>
 
