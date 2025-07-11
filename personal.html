@@ -169,16 +169,26 @@
   </div>
 </div>
 
-  <!-- VIDEO -->
-  <div class="card relative" onclick="fullscreenVimeo()">
-    <div style="padding-top: 56.25%; position: relative;">
-      <iframe id="vimeo-player" src="https://player.vimeo.com/video/1100196278?autoplay=0&muted=1"
-        class="absolute top-0 left-0 w-full h-full rounded-xl"
-        frameborder="0"
-        allow="autoplay; fullscreen"
-        allowfullscreen></iframe>
+<!-- VIDEO -->
+<div class="card relative">
+  <div class="relative" style="padding-top: 56.25%;">
+    <iframe id="personal-vimeo-player" src="https://player.vimeo.com/video/1100196278?autoplay=0&muted=1&playsinline=0"
+      class="absolute top-0 left-0 w-full h-full rounded-xl z-0"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen></iframe>
+
+    <!-- Overlay khi video kết thúc -->
+    <div id="personal-vimeo-overlay"
+        class="absolute inset-0 bg-black bg-opacity-100 flex items-center justify-center hidden z-50">
+      <button onclick="replayVimeo()" 
+              class="text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-black-300">
+        ↺ Phát lại
+      </button>
     </div>
   </div>
+</div>
+
 
   <!-- MORE CARDS -->
 <div class="card" onclick="openLightbox('./Image/Cocoon.jpg')">
@@ -374,5 +384,31 @@ document.addEventListener('touchstart', function (e) {
 });
 
 </script>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const iframe = document.getElementById("personal-vimeo-player");
+    const overlay = document.getElementById("personal-vimeo-overlay");
+    const player = new Vimeo.Player(iframe);
+
+    player.on('play', () => {
+      overlay.classList.add("hidden");
+    });
+
+    player.on('ended', () => {
+      console.log("Video ended!");
+      overlay.classList.remove("hidden");
+    });
+
+    window.replayVimeo = function () {
+      player.setCurrentTime(0).then(() => {
+        player.play();
+        overlay.classList.add("hidden");
+      });
+    };
+  });
+</script>
+
 </body>
 </html>
