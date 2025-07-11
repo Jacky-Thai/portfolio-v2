@@ -287,8 +287,6 @@ document.addEventListener('touchstart', function (e) {
 
 <!-- Vimeo -->
 <script src="https://player.vimeo.com/api/player.js"></script>
-
-<script src="https://player.vimeo.com/api/player.js"></script>
 <script>
   const videoIds = ['vimeo1', 'vimeo2', 'vimeo3', 'vimeo4', 'vimeo5', 'vimeo6'];
 
@@ -297,12 +295,19 @@ document.addEventListener('touchstart', function (e) {
     const overlay = document.getElementById('overlay' + (index + 1));
     const player = new Vimeo.Player(iframe);
 
+    // Khi video kết thúc, hiện overlay
     player.on('ended', function () {
       overlay.classList.remove('hidden');
     });
 
+    // Khi video bắt đầu phát, ẩn overlay + auto fullscreen
     player.on('play', function () {
       overlay.classList.add('hidden');
+
+      // Gửi yêu cầu fullscreen nếu chưa fullscreen
+      iframe.contentWindow.postMessage(JSON.stringify({
+        method: 'requestFullscreen'
+      }), '*');
     });
   });
 
@@ -315,6 +320,5 @@ document.addEventListener('touchstart', function (e) {
     player.setCurrentTime(0).then(() => player.play());
   }
 </script>
-
 </body>
 </html>
