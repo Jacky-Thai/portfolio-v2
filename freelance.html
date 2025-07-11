@@ -41,6 +41,11 @@
   position: relative;
   z-index: 9999;
 }
+
+#lightbox.active {
+  display: flex;
+}
+
 </style>
 
 </head>
@@ -295,6 +300,13 @@ document.addEventListener('touchstart', function (e) {
   
   if (isMobile && isSidebarOpen && !sidebar.contains(e.target) && !openSidebarBtn.contains(e.target)) {
     closeMobileSidebar();
+  }
+});
+
+// Đóng Lightbox khi bấm ESC
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    closeLightbox();
   }
 });
 
