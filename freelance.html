@@ -58,6 +58,10 @@
     scrollbar-width: none;     /* Firefox */
   }
 
+  .modal-close-button {
+    touch-action: manipulation;
+    cursor: pointer;
+  }
 </style>
 
 </head>
@@ -202,14 +206,14 @@
 
   <!-- Nút Close -->
 <button onclick="closeGalleryModal('modal-artboard-gb')"
-        class="fixed top-4 left-4 text-white text-3xl font-bold hover:text-gray-500 z-[9999]">
+        class="modal-close-button fixed top-4 left-4 text-white text-3xl font-bold hover:text-gray-500 z-[9999]">
   &times;
 </button>
 
   <!-- Nội dung ảnh dạng 2 cột -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-5 w-full max-w-6xl mx-auto items-center justify-items-center">
-    <img src="./Image/Poster GB.png" alt="Detail 1" class="w-full sm:w-[90%] max-w-3xl rounded-xl shadow-lg object-contain" />
-    <img src="./Image/Thong bao GB.png" alt="Detail 2" class="w-full sm:w-[90%] max-w-3xl rounded-xl shadow-lg object-contain" />
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-10 w-full max-w-6xl mx-auto items-center justify-items-center">
+    <img src="./Image/Poster GB.png" alt="Detail 1" class="w-full sm:w-[95%] max-w-3xl rounded-xl shadow-lg object-contain" />
+    <img src="./Image/Thong bao GB.png" alt="Detail 2" class="w-full sm:w-[95%] max-w-3xl rounded-xl shadow-lg object-contain" />
   </div>
 </div>
 
@@ -371,6 +375,17 @@ document.addEventListener('keydown', function (e) {
     if (hamburger) hamburger.classList.remove('hidden');
   }
 });
+
+// Touch vùng đen để đóng modal
+function handleOutsideClick(e, modalId) {
+  const modal = document.getElementById(modalId);
+  const content = modal.querySelector('.modal-content');
+
+  if (!content.contains(e.target)) {
+    closeGalleryModal(modalId);
+  }
+}
+
 </script>
 
 <!-- Vimeo -->
