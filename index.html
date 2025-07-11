@@ -75,14 +75,14 @@
   const backdrop = document.getElementById('backdrop');
 
   // Mobile sidebar open
-  openSidebarBtn.addEventListener('click', () => {
-    sidebar.classList.remove('hidden');
-    requestAnimationFrame(() => {
-      sidebar.classList.remove('-translate-x-full');
-    });
-    backdrop.classList.remove('hidden');
-    openSidebarBtn.classList.add('hidden');
+openSidebarBtn.addEventListener('click', () => {
+  sidebar.classList.remove('hidden');
+  requestAnimationFrame(() => {
+    sidebar.classList.remove('-translate-x-full');
   });
+  backdrop.classList.remove('hidden');
+  openSidebarBtn.classList.add('hidden');
+});
 
   // Mobile sidebar close
   function closeMobileSidebar() {
