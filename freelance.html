@@ -66,42 +66,91 @@
 <!-- MAIN CONTENT -->
 <main class="flex-1 md:ml-10 px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
 
-  <!-- Video Cards -->
-  <div class="card">
-    <div style="padding-top:49.95%;position:relative;">
-      <iframe src="https://player.vimeo.com/video/1087056986?h=82fd2515e2&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Đoàn Lôtô"></iframe>
+  <!-- VIDEO CARD TEMPLATE -->
+  <div class="card relative">
+    <div class="relative pt-[49.95%]">
+      <iframe id="vimeo1" src="https://player.vimeo.com/video/1087056986?h=82fd2515e2&title=0&byline=0&portrait=0"
+        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+        class="absolute top-0 left-0 w-full h-full rounded-xl"></iframe>
+
+      <div id="overlay1"
+        class="absolute inset-0 bg-black bg-opacity-100 hidden flex flex-col justify-center items-center text-white text-center">
+        <button onclick="replayVideo('vimeo1', 'overlay1')"
+          class="px-6 py-2 text-white rounded-md transition">▶ Phát lại</button>
+      </div>
     </div>
   </div>
 
-  <div class="card">
-    <div style="padding-top:49.95%;position:relative;">
-      <iframe src="https://player.vimeo.com/video/1087056868?h=f6c2a0ee5b&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Chị ba nhảy múa"></iframe>
+  <div class="card relative">
+    <div class="relative pt-[49.95%]">
+      <iframe id="vimeo2" src="https://player.vimeo.com/video/1087056868?h=f6c2a0ee5b&title=0&byline=0&portrait=0"
+        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+        class="absolute top-0 left-0 w-full h-full rounded-xl"></iframe>
+
+      <div id="overlay2"
+        class="absolute inset-0 bg-black bg-opacity-100 hidden flex flex-col justify-center items-center text-white text-center">
+        <button onclick="replayVideo('vimeo2', 'overlay2')"
+          class="px-6 py-2 text-white rounded-md transition">▶ Phát lại</button>
+      </div>
     </div>
   </div>
 
-  <div class="card">
-    <div style="padding-top:56.25%;position:relative;">
-      <iframe src="https://player.vimeo.com/video/1087056827?h=95e44bdd9c&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="BG Loto"></iframe>
+  <div class="card relative">
+    <div class="relative pt-[56.25%]">
+      <iframe id="vimeo3" src="https://player.vimeo.com/video/1087056827?h=95e44bdd9c&title=0&byline=0&portrait=0"
+        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+        class="absolute top-0 left-0 w-full h-full rounded-xl"></iframe>
+
+      <div id="overlay3"
+        class="absolute inset-0 bg-black bg-opacity-100 hidden flex flex-col justify-center items-center text-white text-center">
+        <button onclick="replayVideo('vimeo3', 'overlay3')"
+          class="px-6 py-2 text-white rounded-md transition">▶ Phát lại</button>
+      </div>
     </div>
   </div>
 
-  <div class="card">
-    <div style="padding-top:56.25%;position:relative;">
-      <iframe src="https://player.vimeo.com/video/1087057007?h=73988e9c75&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="All For WinWin"></iframe>
+  <div class="card relative">
+    <div class="relative pt-[56.25%]">
+      <iframe id="vimeo4" src="https://player.vimeo.com/video/1087057007?h=73988e9c75&title=0&byline=0&portrait=0"
+        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+        class="absolute top-0 left-0 w-full h-full rounded-xl"></iframe>
+
+      <div id="overlay4"
+        class="absolute inset-0 bg-black bg-opacity-100 hidden flex flex-col justify-center items-center text-white text-center">
+        <button onclick="replayVideo('vimeo4', 'overlay4')"
+          class="px-6 py-2 text-white rounded-md transition">▶ Phát lại</button>
+      </div>
     </div>
   </div>
 
-  <div class="card">
-    <div style="padding-top:56.25%;position:relative;">
-      <iframe src="https://player.vimeo.com/video/1087158330?h=931c51ad61&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Logo Intro"></iframe>
+  <div class="card relative">
+    <div class="relative pt-[56.25%]">
+      <iframe id="vimeo5" src="https://player.vimeo.com/video/1087158330?h=931c51ad61&title=0&byline=0&portrait=0"
+        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+        class="absolute top-0 left-0 w-full h-full rounded-xl"></iframe>
+
+      <div id="overlay5"
+        class="absolute inset-0 bg-black bg-opacity-100 hidden flex flex-col justify-center items-center text-white text-center">
+        <button onclick="replayVideo('vimeo5', 'overlay5')"
+          class="px-6 py-2 text-white rounded-md transition">▶ Phát lại</button>
+      </div>
     </div>
   </div>
 
-  <div class="card">
-    <div style="padding-top:56.25%;position:relative;">
-      <iframe src="https://player.vimeo.com/video/1087062616?h=59c394aba7&playsinline=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Recap 0503"></iframe>
+  <div class="card relative">
+    <div class="relative pt-[56.25%]">
+      <iframe id="vimeo6" src="https://player.vimeo.com/video/1087062616?h=59c394aba7&title=0&byline=0&portrait=0"
+        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+        class="absolute top-0 left-0 w-full h-full rounded-xl"></iframe>
+
+      <div id="overlay6"
+        class="absolute inset-0 bg-black bg-opacity-100 hidden flex flex-col justify-center items-center text-white text-center">
+        <button onclick="replayVideo('vimeo6', 'overlay6')"
+          class="px-6 py-2 text-white rounded-md transition">▶ Phát lại</button>
+      </div>
     </div>
   </div>
+
 
   <!-- Image Cards with Lightbox -->
   <div class="card" onclick="openLightbox('./Image/Weeding.jpg')">
@@ -238,5 +287,34 @@ document.addEventListener('touchstart', function (e) {
 
 <!-- Vimeo -->
 <script src="https://player.vimeo.com/api/player.js"></script>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+  const videoIds = ['vimeo1', 'vimeo2', 'vimeo3', 'vimeo4', 'vimeo5', 'vimeo6'];
+
+  videoIds.forEach((id, index) => {
+    const iframe = document.getElementById(id);
+    const overlay = document.getElementById('overlay' + (index + 1));
+    const player = new Vimeo.Player(iframe);
+
+    player.on('ended', function () {
+      overlay.classList.remove('hidden');
+    });
+
+    player.on('play', function () {
+      overlay.classList.add('hidden');
+    });
+  });
+
+  function replayVideo(videoId, overlayId) {
+    const iframe = document.getElementById(videoId);
+    const overlay = document.getElementById(overlayId);
+    const player = new Vimeo.Player(iframe);
+
+    overlay.classList.add('hidden');
+    player.setCurrentTime(0).then(() => player.play());
+  }
+</script>
+
 </body>
 </html>
