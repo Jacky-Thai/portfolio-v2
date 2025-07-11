@@ -132,6 +132,25 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// Đóng sidebar nếu chạm/nhấp ra ngoài sidebar trên mobile
+document.addEventListener('click', function (e) {
+  const isMobile = window.innerWidth < 768;
+  const isSidebarOpen = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+  
+  if (isMobile && isSidebarOpen && !sidebar.contains(e.target) && !openSidebarBtn.contains(e.target)) {
+    closeMobileSidebar();
+  }
+});
+
+document.addEventListener('touchstart', function (e) {
+  const isMobile = window.innerWidth < 768;
+  const isSidebarOpen = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
+  
+  if (isMobile && isSidebarOpen && !sidebar.contains(e.target) && !openSidebarBtn.contains(e.target)) {
+    closeMobileSidebar();
+  }
+});
+
 </script>
 </body>
 </html>
