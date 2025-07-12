@@ -269,11 +269,51 @@
   </div>
 </div>
 
-<div class="card" onclick="openLightbox('./Image/Menu.jpg')">
+<!-- CARD mở gallery scroll -->
+<div class="card" onclick="openGalleryModal('modal-menu')">
   <div class="w-full aspect-[16/9] overflow-hidden rounded-xl">
-    <img src="./Image/Menu.jpg" alt="Project 7"
-        class="w-full h-full object-cover object-center" />
+    <img src="./Image/Menu.jpg" alt="Project 7" class="w-full h-full object-cover object-center" />
   </div>
+</div>
+
+<!-- MODAL MENU -->
+<div id="modal-menu"
+     class="gallery-modal fixed inset-0 z-50 bg-black bg-opacity-90 hidden overflow-hidden"
+     onclick="handleModalBackdropClick(event, 'modal-menu')">
+
+  <!-- Nút Close -->
+  <button onclick="closeGalleryModal('modal-menu')"
+          class="absolute top-6 left-6 text-white text-3xl font-bold hover:text-gray-500 z-50">
+    &times;
+  </button>
+
+  <!-- DESKTOP: Scroll ngang -->
+  <div class="scroll-x hidden lg:flex justify-center px-6 py-10 overflow-x-auto items-center h-full"
+       style="scroll-snap-type: x mandatory; scrollbar-width: none;">
+    <style>
+      .scroll-x::-webkit-scrollbar { display: none; }
+    </style>
+    <div class="flex gap-6 scroll-snap-x">
+      <img src="./Image/Menu2.jpg" alt="Detail 1"
+           class="h-[80vh] object-contain rounded-2xl shadow-xl scroll-snap-align-start" />
+      <img src="./Image/Menu1.jpg" alt="Detail 2"
+           class="h-[80vh] object-contain rounded-2xl shadow-xl scroll-snap-align-start" />
+    </div>
+  </div>
+
+  <!-- TABLET & MOBILE: Lightbox ảnh không scroll -->
+  <div class="lg:hidden flex flex-col items-center gap-3 px-4 pt-10 overflow-y-auto"
+       style="scrollbar-width: none;">
+    <style>
+      .lg\:hidden::-webkit-scrollbar { display: none; }
+    </style>
+    <img src="./Image/Menu2.jpg" alt="Detail 1"
+         class="w-full max-w-xl object-contain rounded-[13px] shadow-lg" />
+    <img src="./Image/Menu1.jpg" alt="Detail 2"
+         class="w-full max-w-xl object-contain rounded-[13px] shadow-lg" />
+  </div>
+</div>
+
 
 </div>
   <div class="card" onclick="openLightbox('./Image/illustration.jpg')">
