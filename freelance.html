@@ -190,16 +190,19 @@
      class="gallery-modal fixed inset-0 bg-black bg-opacity-90 hidden z-50 overflow-y-auto p-4"
      onclick="handleModalBackdropClick(event, 'modal-weeding')">
      
+<!-- Nút Close: Sticky top-left nằm ngoài modal-content -->
+  <div class="sticky top-0 left-0 z-50">
     <button onclick="closeGalleryModal('modal-weeding')"
-             class="absolute top-6 left-8 text-white text-3xl font-bold hover:text-gray-500 z-50">
+            class="text-white text-3xl font-bold hover:text-gray-500 bg-opacity-90 px-4 pt-3">
       &times;
     </button>
+  </div>
 
   <div class="modal-content relative max-w-5xl w-full mx-auto" onclick="event.stopPropagation();">
 
     <div class="flex flex-col gap-6 mt-12 items-center">
       <img src="./Image/Weeding1.jpg" class="w-full max-w-4xl rounded-xl" />
-      <img src="./Image/Weeding 2.png" class="w-full max-w-4xl rounded-xl" />
+      <img src="./Image/Weeding 2.png" class="w-full max-w-4xl rounded-b-xl" />
       <img src="./Image/Weeding3.jpg" class="w-full max-w-4xl rounded-xl" />
     </div>
   </div>
