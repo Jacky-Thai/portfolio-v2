@@ -203,24 +203,21 @@
 
 <!-- Modal Wrapper -->
 <div id="modal-artboard-gb"
-     class="gallery-modal fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center"
+     class="gallery-modal fixed inset-0 bg-black bg-opacity-90 z-50 hidden overflow-y-auto p-4 flex items-center justify-center"
      onclick="handleModalBackdropClick(event, 'modal-artboard-gb')">
 
-  <!-- Modal content (16:9 wrapper) -->
-  <div class="relative w-full max-w-6xl aspect-[16/9] bg-transparent" onclick="event.stopPropagation();">
-
-    <!-- Nút Close giống lightbox -->
+  <!-- Modal content -->
+  <div class="modal-content relative max-w-6xl w-full" onclick="event.stopPropagation();">
+    <!-- Nút Close -->
     <button onclick="closeGalleryModal('modal-artboard-gb')"
-            class="absolute top-6 left-10 text-white text-3xl font-bold hover:text-gray-500 z-50">
+            class="modal-close-button sticky top-4 left-4 text-white text-3xl font-bold hover:text-gray-500 z-[9999]">
       &times;
     </button>
 
-    <!-- Nội dung ảnh chia 2 cột -->
-    <div class="absolute inset-0 grid grid-cols-1 sm:grid-cols-2 gap-5 items-center justify-items-center p-4">
-      <img src="./Image/Poster GB.png" alt="Detail 1"
-           class="w-full h-full object-contain rounded-xl shadow-lg" />
-      <img src="./Image/Thong bao GB.png" alt="Detail 2"
-           class="w-full h-full object-contain rounded-xl shadow-lg" />
+    <!-- Nội dung ảnh -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 items-center justify-items-center">
+      <img src="./Image/Poster GB.png" alt="Detail 1" class="w-full sm:w-[95%] max-w-3xl rounded-xl shadow-lg object-contain" />
+      <img src="./Image/Thong bao GB.png" alt="Detail 2" class="w-full sm:w-[95%] max-w-3xl rounded-xl shadow-lg object-contain" />
     </div>
   </div>
 </div>
