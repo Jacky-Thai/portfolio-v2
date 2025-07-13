@@ -226,7 +226,7 @@
 
 <!-- MODAL CAROUSEL -->
 <div id="modal-artboard-gb"
-     class="gallery-modal fixed inset-0 min-h-screen h-[100dvh] bg-black bg-opacity-95 z-50 overflow-hidden flex"
+     class="gallery-modal fixed inset-0 bg-black bg-opacity-90 z-50 hidden overflow-hidden"
      onclick="handleModalBackdropClick(event, 'modal-artboard-gb')">
 
   <!-- Nút Close -->
@@ -519,7 +519,11 @@ window.addEventListener('resize', () => {
   const newVertical = window.innerWidth < 768;
   if (newVertical !== isVertical) {
     isVertical = newVertical;
-    updateSlidePosition();
+
+    // Reset transform direction đúng ngay sau layout thay đổi
+    requestAnimationFrame(() => {
+      updateSlidePosition();
+    });
   }
 });
 
