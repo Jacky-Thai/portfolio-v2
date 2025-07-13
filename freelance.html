@@ -519,11 +519,6 @@ window.addEventListener('resize', () => {
   const newVertical = window.innerWidth < 768;
   if (newVertical !== isVertical) {
     isVertical = newVertical;
-
-    // Reset transform direction đúng ngay sau layout thay đổi
-    requestAnimationFrame(() => {
-      updateSlidePosition();
-    });
   }
 });
 
