@@ -235,9 +235,29 @@
     &times;
   </button>
 
-  <!-- Nút Back / Next (ẩn trên mobile) -->
-  <button onclick="prevSlide()" class="absolute top-1/2 left-2 -translate-y-1/2 text-white text-4xl z-50 hidden md:block">&#10094;</button>
-  <button onclick="nextSlide()" class="absolute top-1/2 right-2 -translate-y-1/2 text-white text-4xl z-50 hidden md:block">&#10095;</button>
+<!-- Button trái (desktop) -->
+<button onclick="prevSlide()"
+        class="hidden md:block absolute top-1/2 left-2 -translate-y-1/2 text-white text-4xl z-50">
+  &#10094;
+</button>
+
+<!-- Button phải (desktop) -->
+<button onclick="nextSlide()"
+        class="hidden md:block absolute top-1/2 right-2 -translate-y-1/2 text-white text-4xl z-50">
+  &#10095;
+</button>
+
+<!-- Button trên (mobile) -->
+<button onclick="prevSlide()"
+        class="md:hidden absolute top-4 left-1/2 -translate-x-1/2 text-white text-3xl z-50 rotate-[90deg]">
+  &#10094;
+</button>
+
+<!-- Button dưới (mobile) -->
+<button onclick="nextSlide()"
+        class="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-3xl z-50 rotate-[90deg]">
+  &#10095;
+</button>
 
   <!-- Container -->
   <div class="w-full h-full flex items-center justify-center overflow-hidden">
