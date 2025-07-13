@@ -224,27 +224,45 @@
   <img src="./Image/Artboard GB.jpg" alt="Freelance Project 4" class="w-full h-auto" />
 </div>
 
-<!-- Modal Wrapper -->
+<!-- MODAL CAROUSEL -->
 <div id="modal-artboard-gb"
-     class="gallery-modal fixed inset-0 bg-black bg-opacity-90 z-50 hidden overflow-y-auto p-4 pt-6 pb-10 flex items-start justify-center"
+     class="gallery-modal fixed inset-0 bg-black bg-opacity-90 z-50 hidden overflow-hidden"
      onclick="handleModalBackdropClick(event, 'modal-artboard-gb')">
 
-    <!-- Nút Close: cố định top-left -->
-    <button onclick="closeGalleryModal('modal-artboard-gb')"
-            class="absolute top-8 left-8 text-white text-3xl font-bold hover:text-gray-500 z-50">
-      &times;
-    </button>
+  <!-- Nút Close -->
+  <button onclick="closeGalleryModal('modal-artboard-gb')"
+          class="absolute top-6 left-6 text-white text-3xl font-bold hover:text-gray-500 z-50">
+    &times;
+  </button>
 
-  <!-- Modal content -->
-  <div class="modal-content relative max-w-6xl w-full mx-auto" onclick="event.stopPropagation();">
+  <!-- Nút Back / Next (ẩn trên mobile) -->
+  <button onclick="prevSlide()" class="absolute top-1/2 left-2 -translate-y-1/2 text-white text-4xl z-50 hidden md:block">&#10094;</button>
+  <button onclick="nextSlide()" class="absolute top-1/2 right-2 -translate-y-1/2 text-white text-4xl z-50 hidden md:block">&#10095;</button>
 
-    <!-- Nội dung ảnh -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-12 items-center justify-items-center">
-      <img src="./Image/Poster GB.png" alt="Detail 1"
-           class="w-full sm:w-[95%] max-w-3xl rounded-xl shadow-lg object-contain" />
-      <img src="./Image/Thong bao GB.png" alt="Detail 2"
-           class="w-full sm:w-[95%] max-w-3xl rounded-xl shadow-lg object-contain" />
-           
+  <!-- Container -->
+  <div class="w-full h-full flex items-center justify-center overflow-hidden">
+    <div id="carousel-track"
+         class="flex flex-col md:flex-row transition-transform duration-500 ease-in-out w-full h-full"
+         style="transform: translateX(0%)">
+
+      <!-- Slide 1 -->
+      <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
+        <img src="./Image/Poster GB.png"
+             class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl" />
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
+        <img src="./Image/Thong bao GB.png"
+             class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl" />
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
+        <img src="./Image/GB.jpg"
+             class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl" />
+      </div>
+
     </div>
   </div>
 </div>
@@ -363,39 +381,39 @@ document.addEventListener('click', function (e) {
   }
 });
 
+// Đóng sidebar trên mobile khi chạm ngoài
 document.addEventListener('touchstart', function (e) {
   const isMobile = window.innerWidth < 768;
   const isSidebarOpen = !sidebar.classList.contains('hidden') && !sidebar.classList.contains('-translate-x-full');
-  
   if (isMobile && isSidebarOpen && !sidebar.contains(e.target) && !openSidebarBtn.contains(e.target)) {
     closeMobileSidebar();
   }
 });
 
-// Đóng Lightbox khi bấm ESC
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') {
-    closeLightbox();
-  }
-});
-
+// Mở modal gallery
 function openGalleryModal(id) {
   const modal = document.getElementById(id);
   if (!modal) return;
-  modal.classList.remove('hidden'); // Hiển thị modal
-  document.body.style.overflow = 'hidden'; // Ẩn scroll trang
+
+  // Hiển thị modal (flex hoặc block tùy modal)
+  modal.classList.remove('hidden');
+  modal.classList.add('flex'); // Đảm bảo hiện modal dạng flex nếu cần
+  document.body.style.overflow = 'hidden'; // Ẩn scroll trang chính
 
   // Reset scroll về đầu modal
   modal.scrollTop = 0;
 
-  // Ẩn hamburger khi mở modal
+  // Ẩn hamburger trên mobile
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.add('hidden');
 }
 
+// Đóng modal gallery
 function closeGalleryModal(id) {
   const modal = document.getElementById(id);
   if (!modal) return;
+
+  modal.classList.remove('flex');
   modal.classList.add('hidden');
   document.body.style.overflow = '';
 
@@ -403,26 +421,102 @@ function closeGalleryModal(id) {
   if (hamburger) hamburger.classList.remove('hidden');
 }
 
-// ESC để đóng modal
+// ESC để đóng tất cả modal gallery
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
-    document.querySelectorAll('.gallery-modal').forEach(modal => modal.classList.add('hidden'));
+    document.querySelectorAll('.gallery-modal').forEach(modal => {
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    });
     document.body.style.overflow = '';
+
     const hamburger = document.getElementById('hamburgerBar');
     if (hamburger) hamburger.classList.remove('hidden');
+
+    // Đóng lightbox nếu đang mở
+    closeLightbox?.();
   }
 });
 
-// Touch vùng đen để đóng modal
-function handleOutsideClick(e, modalId) {
+// Click ra vùng đen để đóng modal gallery
+function handleModalBackdropClick(e, modalId) {
   const modal = document.getElementById(modalId);
-  const content = modal.querySelector('.modal-content');
-
-  // Nếu click nằm ngoài phần content (vùng đen)
-  if (!content.contains(e.target)) {
+  if (!modal) return;
+  if (e.target === modal) {
     closeGalleryModal(modalId);
   }
 }
+
+let currentSlide = 0;
+const totalSlides = 3;
+const track = document.getElementById('carousel-track');
+
+function updateSlide() {
+  const isDesktop = window.innerWidth >= 768;
+  const slideWidth = track.offsetWidth;
+  const offset = -(currentSlide * slideWidth);
+  track.style.transform = `translateX(${offset}px)`;
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateSlide();
+}
+
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  updateSlide();
+}
+
+function openGalleryModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+
+  if (id === 'modal-carousel') {
+    currentSlide = 0;
+    updateSlide();
+  }
+
+  const hamburger = document.getElementById('hamburgerBar');
+  if (hamburger) hamburger.classList.add('hidden');
+}
+
+let currentIndex = 0;
+let isVertical = window.innerWidth < 768;
+
+function updateSlidePosition() {
+  const track = document.getElementById('carousel-track');
+  const slideCount = track.children.length;
+  const offset = isVertical ? `-${currentIndex * 100}vh` : `-${currentIndex * 100}%`;
+  track.style.transform = isVertical ? `translateY(${offset})` : `translateX(${offset})`;
+}
+
+// Theo dõi resize để cập nhật layout và vị trí
+window.addEventListener('resize', () => {
+  const newVertical = window.innerWidth < 768;
+  if (newVertical !== isVertical) {
+    isVertical = newVertical;
+    updateSlidePosition();
+  }
+});
+
+function nextSlide() {
+  const track = document.getElementById('carousel-track');
+  const slideCount = track.children.length;
+  currentIndex = (currentIndex + 1) % slideCount;
+  updateSlidePosition();
+}
+
+function prevSlide() {
+  const track = document.getElementById('carousel-track');
+  const slideCount = track.children.length;
+  currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+  updateSlidePosition();
+}
+
 
 </script>
 
