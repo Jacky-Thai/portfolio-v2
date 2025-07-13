@@ -537,6 +537,24 @@ function prevSlide() {
   updateSlidePosition();
 }
 
+let startY = 0;
+
+document.getElementById('carousel-track').addEventListener('touchstart', function(e) {
+  startY = e.touches[0].clientY;
+}, { passive: true });
+
+document.getElementById('carousel-track').addEventListener('touchend', function(e) {
+  const endY = e.changedTouches[0].clientY;
+  const deltaY = startY - endY;
+
+  if (Math.abs(deltaY) > 50) {
+    if (deltaY > 0) {
+      nextSlide(); // Vuốt lên -> next
+    } else {
+      prevSlide(); // Vuốt xuống -> prev
+    }
+  }
+}, { passive: true });
 
 </script>
 
