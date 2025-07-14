@@ -709,6 +709,10 @@ function handleImageLoaded(img, spinnerId) {
   if (spinner) spinner.style.display = "none";
 }
 
+<!-- Cuộn về đầu trang khi reload -->
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
 </script>
 
 <script src="https://player.vimeo.com/api/player.js"></script>

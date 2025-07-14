@@ -159,6 +159,10 @@ document.addEventListener('touchstart', function (e) {
   }
 });
 
+<!-- Cuộn về đầu trang khi reload -->
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
 </script>
 </body>
 </html>

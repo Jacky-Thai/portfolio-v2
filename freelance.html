@@ -181,15 +181,26 @@
 
 
 <!-- CARD -->
-<div class="card" onclick="openGalleryModal('modal-weeding')">
-  <img src="./Image/Weeding.jpg" class="w-full h-auto" />
+<div class="card relative group" onclick="openGalleryModal('modal-weeding')">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-weeding">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
+  <!-- Hình ảnh hiển thị sau khi load -->
+  <img src="./Image/Weeding.jpg"
+      alt="Project Weeding"
+      class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
+      onload="handleImageLoaded(this, 'spinner-weeding')" />
 </div>
 
 <!-- MODAL -->
 <div id="modal-weeding"
-     class="gallery-modal fixed inset-0 bg-black bg-opacity-90 hidden z-50 overflow-y-auto p-4"
-     onclick="handleModalBackdropClick(event, 'modal-weeding')">
-     
+    class="gallery-modal fixed inset-0 bg-black bg-opacity-90 hidden z-50 overflow-y-auto p-4"
+    onclick="handleModalBackdropClick(event, 'modal-weeding')">
+
 <!-- Nút Close: Sticky top-left nằm ngoài modal-content -->
   <div class="sticky top-0 left-0 z-50">
     <button onclick="closeGalleryModal('modal-weeding')"
@@ -201,34 +212,82 @@
   <div class="modal-content relative max-w-5xl w-full mx-auto" onclick="event.stopPropagation();">
 
 <div class="flex flex-col gap-6 mt-12 pb-4 md:pb-4 items-center">
-      <img src="./Image/Weeding1.jpg" class="w-full max-w-4xl rounded-xl" />
-      <img src="./Image/Weeding 2.png" class="w-full max-w-4xl rounded-b-xl" />
-      <img src="./Image/Weeding3.jpg" class="w-full max-w-4xl rounded-xl" />
-      <img src="./Image/Weeding.jpg" class="w-full max-w-4xl rounded-xl" />
+      <img src="./Image/Weeding1.jpg" class="w-full max-w-4xl rounded-xl opacity-0 transition-opacity duration-300" onload="this.style.opacity=1" />
+      <img src="./Image/Weeding 2.png" class="w-full max-w-4xl rounded-b-xl opacity-0 transition-opacity duration-300" onload="this.style.opacity=1" />
+      <img src="./Image/Weeding3.jpg" class="w-full max-w-4xl rounded-xl opacity-0 transition-opacity duration-300" onload="this.style.opacity=1" />
+      <img src="./Image/Weeding.jpg" class="w-full max-w-4xl rounded-xl opacity-0 transition-opacity duration-300" onload="this.style.opacity=1" />
     </div>
   </div>
 </div>
 
     <!-- Image Cards with Lightbox -->
-  <div class="card" onclick="openLightbox('./Image/spe-party.jpg')">
-    <img src="./Image/spe-party.jpg" alt="Freelance Project 1" class="w-full h-auto" />
-  </div>
-  <div class="card" onclick="openLightbox('./Image/HPM.jpg')">
-    <img src="./Image/Artboard HPM.jpg" alt="Freelance Project 2" class="w-full h-auto" />
-  </div>
-  <div class="card" onclick="openLightbox('./Image/BTC.jpg')">
-    <img src="./Image/Artboard BTC.jpg" alt="Freelance Project 3" class="w-full h-auto" />
+<!-- CARD 1: spe-party.jpg -->
+<div class="card relative group">
+  <!-- Spinner -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-spe-party">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
   </div>
 
+  <!-- Image -->
+  <img src="./Image/spe-party.jpg"
+      alt="Freelance Project 1"
+      class="w-full h-auto opacity-0 transition-opacity duration-300"
+      onload="handleImageLoaded(this, 'spinner-spe-party')"
+      onclick="openLightbox('./Image/spe-party.jpg')" />
+</div>
+
+<!-- CARD 2: Artboard HPM -->
+<div class="card relative group">
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-hpm">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
+  <img src="./Image/Artboard HPM.jpg"
+      alt="Freelance Project 2"
+      class="w-full h-auto opacity-0 transition-opacity duration-300"
+      onload="handleImageLoaded(this, 'spinner-hpm')"
+      onclick="openLightbox('./Image/HPM.jpg')" />
+</div>
+
+<!-- CARD 3: Artboard BTC -->
+<div class="card relative group">
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-btc">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
+  <img src="./Image/Artboard BTC.jpg"
+      alt="Freelance Project 3"
+      class="w-full h-auto opacity-0 transition-opacity duration-300"
+      onload="handleImageLoaded(this, 'spinner-btc')"
+      onclick="openLightbox('./Image/BTC.jpg')" />
+</div>
+
 <!-- CARD mở modal scroll dọc -->
-<div class="card" onclick="openGalleryModal('modal-artboard-gb')">
-  <img src="./Image/Artboard GB.jpg" alt="Freelance Project 4" class="w-full h-auto" />
+<div class="card relative group" onclick="openGalleryModal('modal-artboard-gb')">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-artboard-gb">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
+  <!-- Hình ảnh chính (preview) -->
+  <img src="./Image/Artboard GB.jpg"
+      alt="Freelance Project 4"
+      class="w-full h-auto opacity-0 transition-opacity duration-300"
+      onload="handleImageLoaded(this, 'spinner-artboard-gb')" />
 </div>
 
 <!-- MODAL CAROUSEL -->
 <div id="modal-artboard-gb"
-     class="gallery-modal fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-95 z-50 hidden overflow-hidden flex"
-     onclick="handleModalBackdropClick(event, 'modal-artboard-gb')">
+    class="gallery-modal fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-95 z-50 hidden overflow-hidden flex"
+    onclick="handleModalBackdropClick(event, 'modal-artboard-gb')">
 
   <!-- Nút Close -->
   <button onclick="closeGalleryModal('modal-artboard-gb')"
@@ -263,35 +322,47 @@
   <!-- Container -->
   <div class="w-full h-full flex items-center justify-center overflow-hidden">
     <div id="carousel-track"
-         class="flex flex-col md:flex-row transition-transform duration-500 ease-in-out w-full h-full"
-         style="transform: translateX(0%)">
+        class="flex flex-col md:flex-row transition-transform duration-500 ease-in-out w-full h-full"
+        style="transform: translateX(0%)">
 
       <!-- Slide 1 -->
       <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
         <img src="./Image/Poster GB.png"
-             class="max-w-[90vw] max-h-[85vh] object-contain rounded-xl" />
+            class="max-w-[90vw] max-h-[85vh] object-contain rounded-xl" />
       </div>
 
       <!-- Slide 2 -->
       <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
         <img src="./Image/Thong bao GB.png"
-             class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl" />
+            class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl" />
       </div>
 
       <!-- Slide 3 -->
       <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
         <img src="./Image/GB.jpg"
-             class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl" />
+            class="max-w-[90vw] max-h-[90vh] object-contain rounded-xl" />
       </div>
 
     </div>
   </div>
 </div>
 
-
-  <div class="card" onclick="openLightbox('./Image/LHVN.jpg')">
-    <img src="./Image/Artboard LHVN.jpg" alt="Freelance Project 3" class="w-full h-auto" />
+<!-- CARD: Artboard LHVN -->
+<div class="card relative group" onclick="openLightbox('./Image/LHVN.jpg')">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-lhvn">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
   </div>
+
+  <!-- Ảnh chính -->
+  <img src="./Image/Artboard LHVN.jpg"
+      alt="Freelance Project LHVN"
+      class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
+      onload="handleImageLoaded(this, 'spinner-lhvn')" />
+</div>
+
 </main>
 
 <!-- LIGHTBOX -->
@@ -556,6 +627,18 @@ document.getElementById('carousel-track').addEventListener('touchend', function(
   }
 }, { passive: true });
 
+function handleImageLoaded(img, spinnerId) {
+  img.classList.remove("opacity-0"); // Hiện ảnh
+  const spinner = document.getElementById(spinnerId);
+  if (spinner) {
+    spinner.style.display = "none"; // Ẩn spinner
+  }
+}
+
+<!-- Cuộn về đầu trang khi reload -->
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
 </script>
 
 <!-- Vimeo -->
