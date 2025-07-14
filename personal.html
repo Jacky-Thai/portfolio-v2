@@ -204,7 +204,8 @@
       alt="Project 1"
       class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
       onload="handleImageLoaded(this, 'spinner-8-3')"
-      onclick="openLightbox('./Image/8.3.png')" />
+      onclick="openLightbox('./Image/8.3.png')" 
+      data-spinner="spinner-8-3"/>
 </div>
 
     <!-- CARD IMAGE 2 -->
@@ -221,7 +222,8 @@
        alt="Project 2"
        class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
        onload="handleImageLoaded(this, 'spinner-uudai')"
-       onclick="openLightbox('./Image/uudai.png')" />
+       onclick="openLightbox('./Image/uudai.png')" 
+       data-spinner="spinner-uudai"/>
 </div>
 
     <!-- CARD IMAGE 3 -->
@@ -238,7 +240,8 @@
        alt="Project 3"
        class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
        onload="handleImageLoaded(this, 'spinner-mungdaile')"
-       onclick="openLightbox('./Image/mungdaile.png')" />
+       onclick="openLightbox('./Image/mungdaile.png')" 
+       data-spinner="spinner-uudai"/>
 </div>
   
     <!-- CARD IMAGE 4 -->
@@ -255,7 +258,8 @@
        alt="Project 4"
        class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
        onload="handleImageLoaded(this, 'spinner-dauthangluongve')"
-       onclick="openLightbox('./Image/dauthangluongve.png')" />
+       onclick="openLightbox('./Image/dauthangluongve.png')" 
+       data-spinner="spinner-dauthangluongve"/>
 </div>
 
 <!-- CARD mở gallery dọc có loading -->
@@ -271,7 +275,8 @@
   <img src="./Image/Gaming.jpg"
        alt="Project 5"
        class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
-       onload="handleImageLoaded(this, 'spinner-gaming')" />
+       onload="handleImageLoaded(this, 'spinner-gaming')" 
+       data-spinner="spinner-gaming"/>
 </div>
 
 <!-- MODAL SCROLL DỌC -->
@@ -325,7 +330,8 @@
     <img src="./Image/Cocoon.jpg"
         alt="Project 6"
         class="w-full h-full object-cover object-center opacity-0 transition-opacity duration-300"
-        onload="handleImageLoaded(this, 'spinner-cocoon')" />
+        onload="handleImageLoaded(this, 'spinner-cocoon')" 
+        data-spinner="spinner-cocoon"/>
   </div>
 </div>
 
@@ -361,7 +367,8 @@
     <img src="./Image/Menu.jpg"
         alt="Project 7"
         class="w-full h-full object-cover object-center opacity-0 transition-opacity duration-300"
-        onload="handleImageLoaded(this, 'spinner-menu')" />
+        onload="handleImageLoaded(this, 'spinner-menu')" 
+        data-spinner="spinner-menu"/>
   </div>
 </div>
 
@@ -424,7 +431,8 @@
        alt="Project 8"
        class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
        onload="handleImageLoaded(this, 'spinner-illustration')"
-       onclick="openLightbox('./Image/illustration.jpg')" />
+       onclick="openLightbox('./Image/illustration.jpg')" 
+       data-spinner="spinner-illustration"/>
 </div>
 
     <!-- CARD IMAGE 9 -->
@@ -441,7 +449,8 @@
        alt="Project 9"
        class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
        onload="handleImageLoaded(this, 'spinner-line-illustration')"
-       onclick="openLightbox('./Image/line illustration.jpg')" />
+       onclick="openLightbox('./Image/line illustration.jpg')" 
+       data-spinner="spinner-line-illustration"/>
 </div>
 
 <!-- LIGHTBOX -->
@@ -713,6 +722,16 @@ function handleImageLoaded(img, spinnerId) {
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
+
+window.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("img[data-spinner]").forEach((img) => {
+    if (img.complete) {
+      const spinnerId = img.getAttribute("data-spinner");
+      handleImageLoaded(img, spinnerId);
+    }
+  });
+});
+
 </script>
 
 <script src="https://player.vimeo.com/api/player.js"></script>
