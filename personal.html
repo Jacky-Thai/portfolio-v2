@@ -699,17 +699,6 @@ function closeLightbox() {
   if (hamburger) hamburger.classList.remove('hidden');
 }
 
-  // Gallery scroll modal
-  function openGalleryModal(id) {
-    document.getElementById(id).classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeGalleryModal(id) {
-    document.getElementById(id).classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
   function fullscreenVimeo() {
     const player = document.getElementById('vimeo-player');
     const message = { method: 'requestFullscreen' };
@@ -730,20 +719,37 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// Open modal gallery
 function openGalleryModal(id) {
   const modal = document.getElementById(id);
-  const scrollable = modal.querySelector('.content-scroll');
+  const scrollable = modal.querySelector('.content-scroll, .scroll-x');
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  // Cuộn về đầu modal
+  // Reset scroll về đầu
   if (scrollable?.scrollTo) {
-    scrollable.scrollTo({ top: 0, behavior: 'instant' });
+    scrollable.scrollTo({ top: 0, left: 0 });
   }
 
-  // ✅ Ẩn hamburger khi mở modal
+  // Ẩn hamburger icon khi gallery mở
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.add('hidden');
+
+  // ✅ Ép browser render lại để spinner hiển thị
+  requestAnimationFrame(() => {
+    const spinners = modal.querySelectorAll('[id^="spinner-"]');
+    spinners.forEach(spinner => {
+      spinner.style.display = 'flex';
+    });
+
+    // ✅ Check nếu ảnh đã được load từ cache (ảnh complete) thì ẩn spinner luôn
+    modal.querySelectorAll('img[data-spinner]').forEach(img => {
+      if (img.complete) {
+        const spinnerId = img.getAttribute('data-spinner');
+        handleImageLoaded(img, spinnerId);
+      }
+    });
+  });
 }
 
 
