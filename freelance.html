@@ -193,7 +193,8 @@
   <img src="./Image/Weeding.jpg"
       alt="Project Weeding"
       class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
-      onload="handleImageLoaded(this, 'spinner-weeding')" />
+      onload="handleImageLoaded(this, 'spinner-weeding')" 
+      data-spinner="spinner-weeding"/>
 </div>
 
 <!-- MODAL -->
@@ -235,7 +236,8 @@
       alt="Freelance Project 1"
       class="w-full h-auto opacity-0 transition-opacity duration-300"
       onload="handleImageLoaded(this, 'spinner-spe-party')"
-      onclick="openLightbox('./Image/spe-party.jpg')" />
+      onclick="openLightbox('./Image/spe-party.jpg')" 
+      data-spinner="spinner-spe-party"/>
 </div>
 
 <!-- CARD 2: Artboard HPM -->
@@ -250,7 +252,8 @@
       alt="Freelance Project 2"
       class="w-full h-auto opacity-0 transition-opacity duration-300"
       onload="handleImageLoaded(this, 'spinner-hpm')"
-      onclick="openLightbox('./Image/HPM.jpg')" />
+      onclick="openLightbox('./Image/HPM.jpg')" 
+      data-spinner="spinner-hpm"/>
 </div>
 
 <!-- CARD 3: Artboard BTC -->
@@ -265,7 +268,8 @@
       alt="Freelance Project 3"
       class="w-full h-auto opacity-0 transition-opacity duration-300"
       onload="handleImageLoaded(this, 'spinner-btc')"
-      onclick="openLightbox('./Image/BTC.jpg')" />
+      onclick="openLightbox('./Image/BTC.jpg')"
+      data-spinner="spinner-btc" />
 </div>
 
 <!-- CARD mở modal scroll dọc -->
@@ -281,7 +285,8 @@
   <img src="./Image/Artboard GB.jpg"
       alt="Freelance Project 4"
       class="w-full h-auto opacity-0 transition-opacity duration-300"
-      onload="handleImageLoaded(this, 'spinner-artboard-gb')" />
+      onload="handleImageLoaded(this, 'spinner-artboard-gb')" 
+      data-spinner="spinner-artboard-gb"/>
 </div>
 
 <!-- MODAL CAROUSEL -->
@@ -360,7 +365,8 @@
   <img src="./Image/Artboard LHVN.jpg"
       alt="Freelance Project LHVN"
       class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
-      onload="handleImageLoaded(this, 'spinner-lhvn')" />
+      onload="handleImageLoaded(this, 'spinner-lhvn')" 
+      data-spinner="spinner-lhvn"/>
 </div>
 
 </main>
@@ -639,6 +645,16 @@ function handleImageLoaded(img, spinnerId) {
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
+
+window.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("img[data-spinner]").forEach((img) => {
+    if (img.complete) {
+      const spinnerId = img.getAttribute("data-spinner");
+      handleImageLoaded(img, spinnerId);
+    }
+  });
+});
+
 </script>
 
 <!-- Vimeo -->
