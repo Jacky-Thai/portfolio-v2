@@ -189,22 +189,89 @@
 <main class="flex-1 md:ml-10 px-4 py-10 pt-[60px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
 
   <!-- CARD IMAGE -->
-  <div class="card" onclick="openLightbox('./Image/8.3.png')">
-    <img src="./Image/8.3.jpg" alt="Project 1" class="w-full h-auto rounded-xl" />
-  </div>
-  <div class="card" onclick="openLightbox('./Image/uudai.png')">
-    <img src="./Image/uudai.jpg" alt="Project 2" class="w-full h-auto rounded-xl" />
-  </div>
-  <div class="card" onclick="openLightbox('./Image/mungdaile.png')">
-    <img src="./Image/mungdaile.jpg" alt="Project 3" class="w-full h-auto rounded-xl" />
-  </div>
-  <div class="card" onclick="openLightbox('./Image/dauthangluongve.png')">
-    <img src="./Image/dauthangluongve.jpg" alt="Project 4" class="w-full h-auto rounded-xl" />
+
+    <!-- CARD IMAGE 1 -->
+<div class="card relative group">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-8-3">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
   </div>
 
-<!-- CARD mở gallery -->
-<div class="card" onclick="openGalleryModal('gallery-gaming')">
-  <img src="./Image/Gaming.jpg" alt="Project 5" class="w-full h-auto rounded-xl" />
+  <!-- Image 1 -->
+  <img src="./Image/8.3.jpg"
+      alt="Project 1"
+      class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
+      onload="handleImageLoaded(this, 'spinner-8-3')"
+      onclick="openLightbox('./Image/8.3.png')" />
+</div>
+
+    <!-- CARD IMAGE 2 -->
+<div class="card relative group">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-uudai">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
+  <!-- Image 2 -->
+  <img src="./Image/uudai.jpg"
+       alt="Project 2"
+       class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
+       onload="handleImageLoaded(this, 'spinner-uudai')"
+       onclick="openLightbox('./Image/uudai.png')" />
+</div>
+
+    <!-- CARD IMAGE 3 -->
+<div class="card relative group">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-mungdaile">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
+  <!-- Image 3 -->
+  <img src="./Image/mungdaile.jpg"
+       alt="Project 3"
+       class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
+       onload="handleImageLoaded(this, 'spinner-mungdaile')"
+       onclick="openLightbox('./Image/mungdaile.png')" />
+</div>
+  
+    <!-- CARD IMAGE 4 -->
+<div class="card relative group">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-dauthangluongve">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
+  <!-- Image 4 -->
+  <img src="./Image/dauthangluongve.jpg"
+       alt="Project 4"
+       class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
+       onload="handleImageLoaded(this, 'spinner-dauthangluongve')"
+       onclick="openLightbox('./Image/dauthangluongve.png')" />
+</div>
+
+<!-- CARD mở gallery dọc có loading -->
+<div class="card relative group" onclick="openGalleryModal('gallery-gaming')">
+  <!-- Spinner -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-gaming">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
+  <!-- Image -->
+  <img src="./Image/Gaming.jpg"
+       alt="Project 5"
+       class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
+       onload="handleImageLoaded(this, 'spinner-gaming')" />
 </div>
 
 <!-- MODAL SCROLL DỌC -->
@@ -245,10 +312,20 @@
 
 
   <!-- MORE CARDS -->
-<div class="card" onclick="openGalleryModal('gallery-cocoon')">
+<div class="card relative group" onclick="openGalleryModal('gallery-cocoon')">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-cocoon">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
+  <!-- Image -->
   <div class="w-full aspect-[16/9] overflow-hidden rounded-xl">
-    <img src="./Image/Cocoon.jpg" alt="Project 6"
-        class="w-full h-full object-cover object-center" />
+    <img src="./Image/Cocoon.jpg"
+        alt="Project 6"
+        class="w-full h-full object-cover object-center opacity-0 transition-opacity duration-300"
+        onload="handleImageLoaded(this, 'spinner-cocoon')" />
   </div>
 </div>
 
@@ -262,25 +339,37 @@
 
   <!-- Horizontal Scroll Container -->
   <div class="scroll-x flex gap-4 max-w-full p-6">
-    <img src="./Image/Cocoon_1.jpg" alt="Cocoon 1" class="max-h-[80vh] rounded-xl object-contain" />
-    <img src="./Image/Cocoon_2.jpg" alt="Cocoon 2" class="max-h-[80vh] rounded-xl object-contain" />
-    <img src="./Image/Cocoon_3.jpg" alt="Cocoon 3" class="max-h-[80vh] rounded-xl object-contain" />
-    <img src="./Image/Cocoon_4.jpg" alt="Cocoon 4" class="max-h-[80vh] rounded-xl object-contain" />
-    <img src="./Image/Cocoon_5.jpg" alt="Cocoon 4" class="max-h-[80vh] rounded-xl object-contain" />
+    <img src="./Image/Cocoon_1.jpg" alt="Cocoon 1" class="max-h-[80vh] rounded-xl object-contain opacity-0 transition-opacity duration-300" onload="this.style.opacity = 1" />
+    <img src="./Image/Cocoon_2.jpg" alt="Cocoon 2" class="max-h-[80vh] rounded-xl object-contain opacity-0 transition-opacity duration-300" onload="this.style.opacity = 1" />
+    <img src="./Image/Cocoon_3.jpg" alt="Cocoon 3" class="max-h-[80vh] rounded-xl object-contain opacity-0 transition-opacity duration-300" onload="this.style.opacity = 1" />
+    <img src="./Image/Cocoon_4.jpg" alt="Cocoon 4" class="max-h-[80vh] rounded-xl object-contain opacity-0 transition-opacity duration-300" onload="this.style.opacity = 1" />
+    <img src="./Image/Cocoon_5.jpg" alt="Cocoon 5" class="max-h-[80vh] rounded-xl object-contain opacity-0 transition-opacity duration-300" onload="this.style.opacity = 1" />
   </div>
 </div>
 
 <!-- CARD mở gallery scroll -->
-<div class="card" onclick="openGalleryModal('modal-menu')">
+<div class="card relative group" onclick="openGalleryModal('modal-menu')">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-menu">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
+  <!-- Ảnh hiển thị sau khi load -->
   <div class="w-full aspect-[16/9] overflow-hidden rounded-xl">
-    <img src="./Image/Menu.jpg" alt="Project 7" class="w-full h-full object-cover object-center" />
+    <img src="./Image/Menu.jpg"
+        alt="Project 7"
+        class="w-full h-full object-cover object-center opacity-0 transition-opacity duration-300"
+        onload="handleImageLoaded(this, 'spinner-menu')" />
   </div>
 </div>
 
+
 <!-- MODAL MENU -->
 <div id="modal-menu"
-     class="gallery-modal fixed inset-0 z-50 bg-black bg-opacity-95 hidden overflow-hidden"
-     onclick="handleModalBackdropClick(event, 'modal-menu')">
+    class="gallery-modal fixed inset-0 z-50 bg-black bg-opacity-95 hidden overflow-hidden"
+    onclick="handleModalBackdropClick(event, 'modal-menu')">
 
   <!-- Nút Close -->
   <button onclick="closeGalleryModal('modal-menu')"
@@ -290,40 +379,70 @@
 
   <!-- DESKTOP: Scroll ngang -->
   <div class="scroll-x hidden lg:flex justify-center px-6 py-10 overflow-x-auto items-center h-full"
-       style="scroll-snap-type: x mandatory; scrollbar-width: none;">
+      style="scroll-snap-type: x mandatory; scrollbar-width: none;">
     <style>
       .scroll-x::-webkit-scrollbar { display: none; }
     </style>
     <div class="flex gap-6 scroll-snap-x">
-      <img src="./Image/Menu2.jpg" alt="Detail 1"
-           class="h-[80vh] object-contain rounded-2xl shadow-xl scroll-snap-align-start" />
-      <img src="./Image/Menu1.jpg" alt="Detail 2"
-           class="h-[80vh] object-contain rounded-2xl shadow-xl scroll-snap-align-start" />
+    <img src="./Image/Menu2.jpg" alt="Detail 1"
+        class="h-[80vh] object-contain rounded-2xl shadow-xl scroll-snap-align-start opacity-0 transition-opacity duration-300"
+        onload="this.style.opacity = 1" />
+
+    <img src="./Image/Menu1.jpg" alt="Detail 2"
+        class="h-[80vh] object-contain rounded-2xl shadow-xl scroll-snap-align-start opacity-0 transition-opacity duration-300"
+        onload="this.style.opacity = 1" />
     </div>
   </div>
 
   <!-- TABLET & MOBILE: Lightbox ảnh không scroll -->
   <div class="lg:hidden flex flex-col items-center gap-3 px-4 pt-10 overflow-y-auto"
-       style="scrollbar-width: none;">
+      style="scrollbar-width: none;">
     <style>
       .lg\:hidden::-webkit-scrollbar { display: none; }
     </style>
     <img src="./Image/Menu2.jpg" alt="Detail 1"
-         class="w-full max-w-xl object-contain rounded-[13px] shadow-lg" />
+        class="w-full max-w-xl object-contain rounded-[13px] shadow-lg opacity-0 transition-opacity duration-300"
+        onload="this.style.opacity = 1" />
+
     <img src="./Image/Menu1.jpg" alt="Detail 2"
-         class="w-full max-w-xl object-contain rounded-[13px] shadow-lg" />
+        class="w-full max-w-xl object-contain rounded-[13px] shadow-lg opacity-0 transition-opacity duration-300"
+        onload="this.style.opacity = 1" />
   </div>
 </div>
 
+    <!-- CARD IMAGE 8 -->
+<div class="card relative group">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-illustration">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
 
+  <!-- Image 8 -->
+  <img src="./Image/illustration.jpg"
+       alt="Project 8"
+       class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
+       onload="handleImageLoaded(this, 'spinner-illustration')"
+       onclick="openLightbox('./Image/illustration.jpg')" />
 </div>
-  <div class="card" onclick="openLightbox('./Image/illustration.jpg')">
-    <img src="./Image/illustration.jpg" alt="Project 8" class="w-full h-auto rounded-xl" />
+
+    <!-- CARD IMAGE 9 -->
+<div class="card relative group">
+  <!-- Spinner Overlay -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-line-illustration">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
   </div>
-  <div class="card" onclick="openLightbox('./Image/line illustration.jpg')">
-    <img src="./Image/line illustration.jpg" alt="Project 9" class="w-full h-auto rounded-xl" />
-  </div>
-</main>
+
+  <!-- Image 9 -->
+  <img src="./Image/line illustration.jpg"
+       alt="Project 9"
+       class="w-full h-auto rounded-xl opacity-0 transition-opacity duration-300"
+       onload="handleImageLoaded(this, 'spinner-line-illustration')"
+       onclick="openLightbox('./Image/line illustration.jpg')" />
+</div>
 
 <!-- LIGHTBOX -->
 <div id="lightbox"
@@ -572,6 +691,22 @@ function closeGalleryModal(id) {
   // Hiện lại hamburger icon khi gallery đóng
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.remove('hidden');
+}
+
+function handleImageLoaded(img, spinnerId) {
+  img.classList.remove('opacity-0');
+  img.classList.add('opacity-100');
+
+  const spinner = document.getElementById(spinnerId);
+  if (spinner) {
+    spinner.style.display = 'none';
+  }
+}
+
+function handleImageLoaded(img, spinnerId) {
+  img.classList.remove("opacity-0");
+  const spinner = document.getElementById(spinnerId);
+  if (spinner) spinner.style.display = "none";
 }
 
 </script>
