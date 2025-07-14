@@ -463,13 +463,23 @@
     &times;
   </button>
 
-  <!-- IMAGE PREVIEW -->
-  <div class="flex-1 flex items-center justify-center p-2 sm:p-6">
-    <img id="lightbox-img"
-        src=""
-        alt="Preview"
-        class="max-w-full max-h-[90vh] rounded-xl shadow-lg object-contain" />
+<!-- IMAGE PREVIEW -->
+<div class="flex-1 flex items-center justify-center p-2 sm:p-6 relative">
+  <!-- Spinner -->
+  <div class="absolute inset-0 flex items-center justify-center bg-black z-20" id="lightbox-spinner">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
   </div>
+
+  <!-- Image -->
+  <img id="lightbox-img"
+      src=""
+      alt="Preview"
+      class="max-w-full max-h-[90vh] rounded-xl shadow-lg object-contain opacity-0 transition-opacity duration-300"
+      onload="handleLightboxImageLoaded()" />
+</div>
+
 </div>
 
 
@@ -712,12 +722,6 @@ function handleImageLoaded(img, spinnerId) {
   }
 }
 
-function handleImageLoaded(img, spinnerId) {
-  img.classList.remove("opacity-0");
-  const spinner = document.getElementById(spinnerId);
-  if (spinner) spinner.style.display = "none";
-}
-
 <!-- Cuộn về đầu trang khi reload -->
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
@@ -731,6 +735,15 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+  // Loading spinner trong modal/lightbox
+function handleLightboxImageLoaded() {
+  const img = document.getElementById('lightbox-img');
+  const spinner = document.getElementById('lightbox-spinner');
+  img.classList.remove('opacity-0');
+  img.classList.add('opacity-100');
+  if (spinner) spinner.style.display = 'none';
+}
 
 </script>
 
