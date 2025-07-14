@@ -752,7 +752,6 @@ function openGalleryModal(id) {
   });
 }
 
-
    // Thoát Lightbox và Gallery Modal khi bấm ESC
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
@@ -847,30 +846,6 @@ document.querySelectorAll('.scroll-x').forEach(container => {
   container.classList.add('cursor-grab');
 });
 
-// Open modal gallery
-function openGalleryModal(id) {
-  const modal = document.getElementById(id);
-  const scrollable = modal.querySelector('.content-scroll, .scroll-x');
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-
-  // Reset scroll về đầu
-  if (scrollable?.scrollTo) {
-    scrollable.scrollTo({ top: 0, left: 0 });
-  }
-
-  // Ẩn hamburger icon khi gallery mở
-  const hamburger = document.getElementById('hamburgerBar');
-  if (hamburger) hamburger.classList.add('hidden');
-
-  // ✅ Ép browser render lại để spinner hiển thị đồng loạt ngay sau khi modal mở
-  requestAnimationFrame(() => {
-    const spinners = modal.querySelectorAll('[id^="spinner-"]');
-    spinners.forEach(spinner => {
-      spinner.style.display = 'flex';
-    });
-  });
-}
 
 // Close modal gallery
 function closeGalleryModal(id) {
