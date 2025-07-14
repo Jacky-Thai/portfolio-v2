@@ -677,6 +677,8 @@ window.addEventListener('resize', () => {
 
 // Lightbox
 function openLightbox(src) {
+  document.getElementById(id).classList.remove('hidden');
+  document.body.classList.add('overflow-hidden');
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
   lbImg.src = src;
@@ -689,6 +691,8 @@ function openLightbox(src) {
 }
 
 function closeLightbox() {
+  document.getElementById(id).classList.add('hidden');
+  document.body.classList.remove('overflow-hidden');
   const lb = document.getElementById('lightbox');
   lb.classList.remove('active');
   document.getElementById('lightbox-img').src = '';
@@ -721,6 +725,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Open modal gallery
 function openGalleryModal(id) {
+  document.getElementById(id).classList.remove("hidden");
+  document.body.classList.add("overflow-hidden");
   const modal = document.getElementById(id);
   const scrollable = modal.querySelector('.content-scroll, .scroll-x');
   modal.classList.add('active');
@@ -849,6 +855,8 @@ document.querySelectorAll('.scroll-x').forEach(container => {
 
 // Close modal gallery
 function closeGalleryModal(id) {
+  document.getElementById(id).classList.add("hidden");
+  document.body.classList.remove("overflow-hidden");
   const modal = document.getElementById(id);
   modal.classList.remove('active');
   document.body.style.overflow = '';
