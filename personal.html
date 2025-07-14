@@ -286,12 +286,90 @@
   </button>
 
   <div class="content-scroll mx-auto mt-6">
-    <img src="./Image/4.jpg" alt="Detail 1" />
-    <img src="./Image/5.jpg" alt="Detail 2" />
-    <img src="./Image/2.jpg" alt="Detail 3" />
-    <img src="./Image/3.jpg" alt="Detail 4" />
-    <img src="./Image/6.jpg" alt="Detail 5" />
-    <img src="./Image/1.jpg" alt="Detail 6" />
+    <!-- Image 1 -->
+      <div class="relative group">
+        <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-gaming-1">
+          <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+            <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+          </div>
+        </div>
+        <img src="./Image/4.jpg"
+            alt="Detail 1"
+            class="rounded-xl opacity-0 transition-opacity duration-300"
+            onload="handleImageLoaded(this, 'spinner-gaming-1')"
+            data-spinner="spinner-gaming-1" />
+      </div>
+
+    <!-- Image 2 -->
+    <div class="relative group">
+      <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-gaming-2">
+        <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+          <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+        </div>
+      </div>
+      <img src="./Image/5.jpg"
+          alt="Detail 2"
+          class="rounded-xl opacity-0 transition-opacity duration-300"
+          onload="handleImageLoaded(this, 'spinner-gaming-2')"
+          data-spinner="spinner-gaming-2" />
+    </div>
+
+    <!-- Image 3 -->
+    <div class="relative group">
+      <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-gaming-3">
+        <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+          <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+        </div>
+      </div>
+      <img src="./Image/2.jpg"
+          alt="Detail 3"
+          class="rounded-xl opacity-0 transition-opacity duration-300"
+          onload="handleImageLoaded(this, 'spinner-gaming-3')"
+          data-spinner="spinner-gaming-3" />
+    </div>
+
+    <!-- Image 4 -->
+    <div class="relative group">
+      <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-gaming-4">
+        <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+          <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+        </div>
+      </div>
+      <img src="./Image/3.jpg"
+          alt="Detail 4"
+          class="rounded-xl opacity-0 transition-opacity duration-300"
+          onload="handleImageLoaded(this, 'spinner-gaming-4')"
+          data-spinner="spinner-gaming-4" />
+    </div>
+
+    <!-- Image 5 -->
+    <div class="relative group">
+      <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-gaming-5">
+        <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+          <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+        </div>
+      </div>
+      <img src="./Image/6.jpg"
+          alt="Detail 5"
+          class="rounded-xl opacity-0 transition-opacity duration-300"
+          onload="handleImageLoaded(this, 'spinner-gaming-5')"
+          data-spinner="spinner-gaming-5" />
+    </div>
+
+    <!-- Image 6 -->
+    <div class="relative group">
+      <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-gaming-6">
+        <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+          <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+        </div>
+      </div>
+      <img src="./Image/1.jpg"
+          alt="Detail 6"
+          class="rounded-xl opacity-0 transition-opacity duration-300"
+          onload="handleImageLoaded(this, 'spinner-gaming-6')"
+          data-spinner="spinner-gaming-6" />
+    </div>
+</div>
   </div>
 </div>
 
