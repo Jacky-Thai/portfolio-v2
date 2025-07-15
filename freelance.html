@@ -199,27 +199,77 @@
 
 <!-- MODAL -->
 <div id="modal-weeding"
-    class="gallery-modal fixed inset-0 bg-black bg-opacity-90 hidden z-50 overflow-y-auto p-4"
-    onclick="handleModalBackdropClick(event, 'modal-weeding')">
+  class="gallery-modal fixed inset-0 bg-black bg-opacity-90 hidden z-50 overflow-y-auto"
+  onclick="handleModalBackdropClick(event, 'modal-weeding')">
 
-<!-- Nút Close: Sticky top-left nằm ngoài modal-content -->
-  <div class="sticky top-0 left-0 z-50">
-    <button onclick="closeGalleryModal('modal-weeding')"
-            class="text-white text-3xl font-bold hover:text-gray-500 bg-opacity-90 px-4 pt-3">
-      &times;
-    </button>
-  </div>
+  <!-- Nút Close -->
+  <button onclick="closeGalleryModal('modal-weeding')"
+          class="absolute top-4 left-4 z-50 text-white text-3xl font-bold hover:text-gray-500 rounded-full px-3 py-1">
+    &times;
+  </button>
 
-  <div class="modal-content relative max-w-5xl w-full mx-auto" onclick="event.stopPropagation();">
+  <!-- Wrapper -->
+  <div class="min-h-screen w-full flex justify-center items-start px-4 pt-20 pb-20"
+       onclick="event.stopPropagation();">
+    <div class="modal-content max-w-5xl w-full flex flex-col gap-6 items-center">
+      
+      <!-- Ảnh 1 -->
+      <div class="relative w-full max-w-4xl">
+        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 z-10" id="spinner-weeding-1">
+          <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+            <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+          </div>
+        </div>
+        <img src="./Image/Weeding1.jpg"
+             class="w-full rounded-xl opacity-0 transition-opacity duration-300"
+             onload="handleImageLoaded(this, 'spinner-weeding-1')"
+             data-spinner="spinner-weeding-1" />
+      </div>
 
-<div class="flex flex-col gap-6 mt-12 pb-4 md:pb-4 items-center">
-      <img src="./Image/Weeding1.jpg" class="w-full max-w-4xl rounded-xl opacity-0 transition-opacity duration-300" onload="this.style.opacity=1" />
-      <img src="./Image/Weeding 2.png" class="w-full max-w-4xl rounded-b-xl opacity-0 transition-opacity duration-300" onload="this.style.opacity=1" />
-      <img src="./Image/Weeding3.jpg" class="w-full max-w-4xl rounded-xl opacity-0 transition-opacity duration-300" onload="this.style.opacity=1" />
-      <img src="./Image/Weeding.jpg" class="w-full max-w-4xl rounded-xl opacity-0 transition-opacity duration-300" onload="this.style.opacity=1" />
+      <!-- Ảnh 2 -->
+      <div class="relative w-full max-w-4xl">
+        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 z-10" id="spinner-weeding-2">
+          <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+            <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+          </div>
+        </div>
+        <img src="./Image/Weeding 2.png"
+             class="w-full rounded-xl opacity-0 transition-opacity duration-300"
+             onload="handleImageLoaded(this, 'spinner-weeding-2')"
+             data-spinner="spinner-weeding-2" />
+      </div>
+
+      <!-- Ảnh 3 -->
+      <div class="relative w-full max-w-4xl">
+        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 z-10" id="spinner-weeding-3">
+          <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+            <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+          </div>
+        </div>
+        <img src="./Image/Weeding3.jpg"
+             class="w-full rounded-xl opacity-0 transition-opacity duration-300"
+             onload="handleImageLoaded(this, 'spinner-weeding-3')"
+             data-spinner="spinner-weeding-3" />
+      </div>
+
+      <!-- Ảnh 4 -->
+      <div class="relative w-full max-w-4xl">
+        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 z-10" id="spinner-weeding-4">
+          <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+            <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+          </div>
+        </div>
+        <img src="./Image/Weeding.jpg"
+             class="w-full rounded-xl opacity-0 transition-opacity duration-300"
+             onload="handleImageLoaded(this, 'spinner-weeding-4')"
+             data-spinner="spinner-weeding-4" />
+      </div>
+      <div class="h-2"></div>  <!-- Padding giả để đẩy ảnh lên -->
     </div>
   </div>
 </div>
+
+
 
     <!-- Image Cards with Lightbox -->
 <!-- CARD 1: spe-party.jpg -->
