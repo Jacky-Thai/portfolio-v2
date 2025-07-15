@@ -514,36 +514,47 @@ function openLightbox(src) {
   const lbImg = document.getElementById('lightbox-img');
   const spinner = document.getElementById('lightbox-spinner');
 
-  // Reset trạng thái
+  // Nếu ảnh đã load trước đó → không cần load lại
+  if (lbImg.getAttribute('data-loaded') === src) {
+    spinner.classList.add("hidden");
+    lbImg.classList.remove("opacity-0");
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    const hamburger = document.getElementById('hamburgerBar');
+    if (hamburger) hamburger.classList.add('hidden');
+    return;
+  }
+
+  // Reset trạng thái cho ảnh mới
   lbImg.classList.add("opacity-0");
   spinner.classList.remove("hidden");
 
   lb.classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  // Xử lý khi ảnh đã tải xong
   lbImg.onload = function () {
     spinner.classList.add("hidden");
     lbImg.classList.remove("opacity-0");
+
+    // Ghi lại ảnh đã load để tránh load lại lần sau
+    lbImg.setAttribute('data-loaded', src);
   };
 
   lbImg.src = src;
 
-  // Ẩn hamburger nếu có
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.add('hidden');
 }
 
 function closeLightbox() {
   const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightbox-img');
   const spinner = document.getElementById('lightbox-spinner');
+  const lbImg = document.getElementById('lightbox-img');
 
   lb.classList.remove('active');
-  lbImg.src = '';
   document.body.style.overflow = '';
 
-  // Reset spinner lại cho lần sau
+  // Giữ nguyên ảnh để tránh load lại
   spinner.classList.add("hidden");
   lbImg.classList.add("opacity-0");
 
