@@ -600,11 +600,26 @@ window.addEventListener('resize', () => {
 function openLightbox(src) {
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
+  const spinner = document.getElementById('lightbox-spinner');
+
+  // Reset trạng thái trước khi load
+  lbImg.classList.remove('opacity-100');
+  lbImg.classList.add('opacity-0');
+  spinner.style.display = 'flex'; // hiện spinner lại
+
+  // Gắn lại onload trước khi set src
+  lbImg.onload = function () {
+    lbImg.classList.remove('opacity-0');
+    lbImg.classList.add('opacity-100');
+    spinner.style.display = 'none';
+  };
+
   lbImg.src = src;
+
   lb.classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  // Ẩn hamburger menu khi lightbox mở
+  // Ẩn hamburger
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.add('hidden');
 }
@@ -619,26 +634,6 @@ function closeLightbox() {
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.remove('hidden');
 }
-
-  function fullscreenVimeo() {
-    const player = document.getElementById('vimeo-player');
-    const message = { method: 'requestFullscreen' };
-    player.contentWindow.postMessage(JSON.stringify(message), '*');
-  }
-
-  // Auto fullscreen when video starts playing
-document.addEventListener("DOMContentLoaded", function () {
-  const iframe = document.getElementById("vimeo-player");
-  const player = new Vimeo.Player(iframe);
-
-  player.on('play', function () {
-    // Gửi lệnh fullscreen sau khi play
-    iframe.contentWindow.postMessage(
-      JSON.stringify({ method: 'requestFullscreen' }),
-      '*'
-    );
-  });
-});
 
 function openGalleryModal(id) {
   const modal = document.getElementById(id);
@@ -656,6 +651,15 @@ function openGalleryModal(id) {
   if (hamburger) hamburger.classList.add('hidden');
 }
 
+function closeGalleryModal(id) {
+  const modal = document.getElementById(id);
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+
+  // Hiện lại hamburger icon khi gallery đóng
+  const hamburger = document.getElementById('hamburgerBar');
+  if (hamburger) hamburger.classList.remove('hidden');
+}
 
    // Thoát Lightbox và Gallery Modal khi bấm ESC
   document.addEventListener('keydown', function (e) {
@@ -768,16 +772,7 @@ function openGalleryModal(id) {
   if (hamburger) hamburger.classList.add('hidden');
 }
 
-// Close modal gallery
-function closeGalleryModal(id) {
-  const modal = document.getElementById(id);
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
 
-  // Hiện lại hamburger icon khi gallery đóng
-  const hamburger = document.getElementById('hamburgerBar');
-  if (hamburger) hamburger.classList.remove('hidden');
-}
 
 function handleImageLoaded(img, spinnerId) {
   img.classList.remove('opacity-0');
