@@ -620,17 +620,6 @@ function closeLightbox() {
   if (hamburger) hamburger.classList.remove('hidden');
 }
 
-  // Gallery scroll modal
-  function openGalleryModal(id) {
-    document.getElementById(id).classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeGalleryModal(id) {
-    document.getElementById(id).classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
   function fullscreenVimeo() {
     const player = document.getElementById('vimeo-player');
     const message = { method: 'requestFullscreen' };
