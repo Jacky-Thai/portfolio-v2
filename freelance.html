@@ -638,10 +638,10 @@ function openGalleryModal(id) {
   modal.classList.add('flex');
   document.body.style.overflow = 'hidden';
 
-  if (id === 'modal-carousel') {
-    currentSlide = 0;
-    updateSlide();
-  }
+if (id === 'modal-artboard-gb') {
+  currentIndex = 0;
+  updateSlidePosition();
+}
 
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.add('hidden');
