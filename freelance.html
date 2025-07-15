@@ -459,6 +459,14 @@
   <button onclick="closeLightbox()" class="absolute top-12 left-10 text-white text-3xl font-bold hover:text-gray-500 z-50">
     &times;
   </button>
+
+    <!-- Spinner -->
+  <div id="lightbox-spinner" class="absolute inset-0 flex items-center justify-center z-40 bg-black bg-opacity-80 hidden">
+    <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center">
+      <img src="./Image/favicon.png" class="w-6 h-6 object-contain" />
+    </div>
+  </div>
+
   <!-- Image Viewer -->
   <div class="flex-1 flex items-center justify-center p-4">
     <img id="lightbox-img" src="" alt="Preview" class="max-w-full max-h-[90vh] rounded-xl shadow-xl object-contain" />
@@ -504,25 +512,45 @@
 function openLightbox(src) {
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
-  lbImg.src = src;
+  const spinner = document.getElementById('lightbox-spinner');
+
+  // Reset trạng thái
+  lbImg.classList.add("opacity-0");
+  spinner.classList.remove("hidden");
+
   lb.classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  // Ẩn hamburger menu khi lightbox mở
+  // Xử lý khi ảnh đã tải xong
+  lbImg.onload = function () {
+    spinner.classList.add("hidden");
+    lbImg.classList.remove("opacity-0");
+  };
+
+  lbImg.src = src;
+
+  // Ẩn hamburger nếu có
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.add('hidden');
 }
 
 function closeLightbox() {
   const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const spinner = document.getElementById('lightbox-spinner');
+
   lb.classList.remove('active');
-  document.getElementById('lightbox-img').src = '';
+  lbImg.src = '';
   document.body.style.overflow = '';
 
-  // Hiện lại hamburger menu khi lightbox đóng
+  // Reset spinner lại cho lần sau
+  spinner.classList.add("hidden");
+  lbImg.classList.add("opacity-0");
+
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.remove('hidden');
 }
+
 
   // Đóng sidebar nếu người dùng scroll khi đang mở (chỉ trên mobile)
 let lastScroll = 0;
