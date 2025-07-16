@@ -156,16 +156,6 @@
   cursor: grabbing;
 }
 
-html, body {
-  overscroll-behavior: none; /* chặn cuộn truyền tiếp */
-  touch-action: none; /* chặn vuốt đa điểm ngoài modal */
-}
-
-.gallery-modal,
-.lightbox {
-  overscroll-behavior: contain; /* không truyền cuộn ra ngoài */
-}
-
   </style>
 </head>
 <body class="flex flex-col md:flex-row">
@@ -883,20 +873,6 @@ function handleLightboxImageLoaded() {
   img.classList.add('opacity-100');
   if (spinner) spinner.style.display = 'none';
 }
-  // Fix chặn cuộn nền trong modal/lightbox
-function preventScroll(e) {
-  const isLightboxOpen = document.getElementById('lightbox')?.classList.contains('active');
-  const isModalOpen = Array.from(document.querySelectorAll('.gallery-modal')).some(modal => modal.classList.contains('active'));
-
-  // Nếu không phải vùng scroll bên trong modal → ngăn scroll
-  const scrollableAncestor = e.target.closest('.content-scroll, .scroll-x');
-
-  if ((isLightboxOpen || isModalOpen) && !scrollableAncestor) {
-    e.preventDefault();
-  }
-}
-
-document.addEventListener('touchmove', preventScroll, { passive: false });
 
 </script>
 
