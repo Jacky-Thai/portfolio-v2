@@ -289,11 +289,9 @@ function unlockBodyScroll() {
   document.body.style.position = '';
   document.body.style.top = '';
   document.body.style.width = '';
-
-  requestAnimationFrame(() => {
-    window.scrollTo(0, scrollPosition);
-  });
+  window.scrollTo(0, scrollPosition);
 }
+
 </script>
 </body>
 </html>
