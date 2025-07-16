@@ -144,7 +144,7 @@
 
 <!-- LIGHTBOX -->
 <div id="lightbox"
-    class="lightbox hidden z-50">
+class="lightbox hidden z-50 overflow-y-auto">
 
   <!-- CLOSE BUTTON (top-left, không có vòng tròn) -->
   <button onclick="closeLightbox()"
@@ -205,6 +205,9 @@ function openLightbox(src) {
   lb.classList.add('active');
   document.body.style.overflow = 'hidden';
 
+    // ✅ Khóa scroll body (dùng Tailwind class)
+  document.body.classList.add('overflow-hidden');
+
   // Ẩn hamburger menu khi lightbox mở
   const hamburger = document.getElementById('hamburgerBar');
   if (hamburger) hamburger.classList.add('hidden');
@@ -215,6 +218,9 @@ function closeLightbox() {
   lb.classList.remove('active');
   document.getElementById('lightbox-img').src = '';
   document.body.style.overflow = '';
+
+    // ✅ Mở lại scroll body
+  document.body.classList.remove('overflow-hidden');
 
   // Hiện lại hamburger menu khi lightbox đóng
   const hamburger = document.getElementById('hamburgerBar');
