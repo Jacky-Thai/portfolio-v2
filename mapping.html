@@ -203,7 +203,7 @@ function openLightbox(src) {
   const lbImg = document.getElementById('lightbox-img');
   lbImg.src = src;
   lb.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  lockBodyScroll(); // ✅ fix mobile scroll leak
 
   // Ẩn hamburger menu khi lightbox mở
   const hamburger = document.getElementById('hamburgerBar');
@@ -214,7 +214,7 @@ function closeLightbox() {
   const lb = document.getElementById('lightbox');
   lb.classList.remove('active');
   document.getElementById('lightbox-img').src = '';
-  document.body.style.overflow = '';
+  unlockBodyScroll(); // ✅ restore scroll
 
   // Hiện lại hamburger menu khi lightbox đóng
   const hamburger = document.getElementById('hamburgerBar');
@@ -272,6 +272,26 @@ document.addEventListener('touchstart', function (e) {
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
+
+// Scroll lock helper
+let scrollPosition = 0;
+
+function lockBodyScroll() {
+  scrollPosition = window.scrollY || window.pageYOffset;
+  document.body.classList.add('overflow-hidden');
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollPosition}px`;
+  document.body.style.width = '100%';
+}
+
+function unlockBodyScroll() {
+  document.body.classList.remove('overflow-hidden');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, scrollPosition);
+}
+
 </script>
 </body>
 </html>
