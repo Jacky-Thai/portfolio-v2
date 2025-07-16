@@ -684,9 +684,7 @@ function openLightbox(src) {
   lbImg.src = src;
 
   lb.classList.add('active');
-  // ✅ Khóa scroll toàn trang
-  document.documentElement.classList.add('overflow-hidden');
-  document.body.classList.add('overflow-hidden');
+  document.body.style.overflow = 'hidden';
 
   // Ẩn hamburger
   const hamburger = document.getElementById('hamburgerBar');
@@ -697,9 +695,7 @@ function closeLightbox() {
   const lb = document.getElementById('lightbox');
   lb.classList.remove('active');
   document.getElementById('lightbox-img').src = '';
-  // ✅ Mở lại scroll
-  document.documentElement.classList.remove('overflow-hidden');
-  document.body.classList.remove('overflow-hidden');
+  document.body.style.overflow = '';
 
   // Hiện lại hamburger menu khi lightbox đóng
   const hamburger = document.getElementById('hamburgerBar');
