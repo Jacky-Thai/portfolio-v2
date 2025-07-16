@@ -277,11 +277,17 @@ if ('scrollRestoration' in history) {
 let scrollPosition = 0;
 
 function lockBodyScroll() {
-  scrollPosition = window.scrollY || window.pageYOffset;
+  scrollPosition = window.scrollY || document.documentElement.scrollTop;
   document.body.classList.add('overflow-hidden');
   document.body.style.position = 'fixed';
   document.body.style.top = `-${scrollPosition}px`;
   document.body.style.width = '100%';
+}
+
+function lockBodyScroll() {
+  scrollPosition = window.scrollY || window.pageYOffset;
+  console.log('Lock scroll at:', scrollPosition);
+  // ...
 }
 
 function unlockBodyScroll() {
@@ -289,7 +295,11 @@ function unlockBodyScroll() {
   document.body.style.position = '';
   document.body.style.top = '';
   document.body.style.width = '';
-  window.scrollTo(0, scrollPosition);
+
+  // Scroll lại sau khi layout trở lại bình thường ()
+  setTimeout(() => {
+    window.scrollTo(0, scrollPosition);
+  }, 0);
 }
 
 </script>
