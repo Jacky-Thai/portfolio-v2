@@ -74,6 +74,12 @@
   z-index: 9999;
 }
 
+.scroll-lock {
+  position: fixed !important;
+  overflow: hidden !important;
+  width: 100%;
+}
+
   </style>
 </head>
 <body class="flex flex-col md:flex-row">
@@ -278,19 +284,19 @@ let scrollPosition = 0;
 
 function lockBodyScroll() {
   scrollPosition = window.scrollY || window.pageYOffset;
-  document.body.classList.add('overflow-hidden');
-  document.body.style.position = 'fixed';
+  document.body.classList.add('scroll-lock');
   document.body.style.top = `-${scrollPosition}px`;
-  document.body.style.width = '100%';
 }
 
 function unlockBodyScroll() {
-  document.body.classList.remove('overflow-hidden');
-  document.body.style.position = '';
-  document.body.style.top = '';
-  document.body.style.width = '';
-  window.scrollTo(0, scrollPosition);
+  document.body.classList.remove('scroll-lock');
+
+  requestAnimationFrame(() => {
+    document.body.style.top = '';
+    window.scrollTo(0, scrollPosition);
+  });
 }
+
 
 </script>
 </body>
