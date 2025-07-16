@@ -48,7 +48,7 @@
       z-index: 100;
       justify-content: center;
       align-items: center;
-      padding: 2rem;
+      padding: 1rem;
       overflow-y: auto;
     }
 
@@ -75,7 +75,7 @@
   z-index: 100;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 0;
   overflow-y: auto;
 }
 
@@ -89,7 +89,6 @@
   max-height: 90vh;
   max-width: 70vw;
   overflow-y: auto;
-  padding-right: 8px; /* tránh nhảy layout */
   scrollbar-width: none; /* Firefox */
 }
 .gallery-modal .content-scroll::-webkit-scrollbar {
@@ -99,7 +98,6 @@
 .gallery-modal img {
   max-width: 100%;
   border-radius: 1rem;
-  margin-bottom: 1.5rem;
 }
 
 #openSidebar {
@@ -116,7 +114,7 @@
   z-index: 100;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 0;
   overflow: auto;
 }
 
@@ -427,10 +425,10 @@
   </button>
 
   <!-- Horizontal Scroll Container -->
-  <div class="scroll-x flex gap-4 max-w-full p-6 items-center">
+  <div class="scroll-x flex gap-4 max-w-full p-8 items-center">
 
     <!-- Image 1 -->
-    <div class="relative flex-shrink-0 w-[80vw] lg:max-w-[50vw] rounded-xl overflow-hidden">
+    <div class="relative flex-shrink-0 w-[80vw] lg:max-w-[45vw] rounded-xl overflow-hidden">
       <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-cocoon-1">
         <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
           <img src="./Image/favicon2.webp" class="w-6 h-6 object-contain" />
@@ -444,7 +442,7 @@
     </div>
 
     <!-- Image 2 -->
-    <div class="relative flex-shrink-0 w-[80vw] lg:max-w-[50vw] rounded-xl overflow-hidden">
+    <div class="relative flex-shrink-0 w-[80vw] lg:max-w-[45vw] rounded-xl overflow-hidden">
       <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-cocoon-2">
         <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
           <img src="./Image/favicon2.webp" class="w-6 h-6 object-contain" />
@@ -458,7 +456,7 @@
     </div>
 
     <!-- Image 3 -->
-    <div class="relative flex-shrink-0 w-[80vw] lg:max-w-[50vw] rounded-xl overflow-hidden">
+    <div class="relative flex-shrink-0 w-[80vw] lg:max-w-[45vw] rounded-xl overflow-hidden">
       <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-cocoon-3">
         <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
           <img src="./Image/favicon2.webp" class="w-6 h-6 object-contain" />
@@ -472,7 +470,7 @@
     </div>
 
     <!-- Image 4 -->
-    <div class="relative flex-shrink-0 w-[80vw] lg:max-w-[50vw] rounded-xl overflow-hidden">
+    <div class="relative flex-shrink-0 w-[80vw] lg:max-w-[45vw] rounded-xl overflow-hidden">
       <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-cocoon-4">
         <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
           <img src="./Image/favicon2.webp" class="w-6 h-6 object-contain" />
@@ -486,7 +484,7 @@
     </div>
 
     <!-- Image 5 -->
-    <div class="relative flex-shrink-0 w-[80vw] lg:max-w-[50vw] rounded-xl overflow-hidden">
+    <div class="relative flex-shrink-0 w-[80vw] lg:max-w-[45vw] rounded-xl overflow-hidden">
       <div class="absolute inset-0 flex items-center justify-center bg-black z-10" id="spinner-cocoon-5">
         <div class="w-14 h-14 rounded-full border-t-4 border-white border-opacity-30 animate-spin flex items-center justify-center bg-black">
           <img src="./Image/favicon2.webp" class="w-6 h-6 object-contain" />
@@ -535,7 +533,7 @@
   </button>
 
   <!-- DESKTOP: Scroll ngang -->
-  <div class="scroll-x hidden lg:flex justify-center px-6 py-10 overflow-x-auto items-center h-full"
+  <div class="scroll-x hidden lg:flex justify-center px-6 py-6 overflow-x-auto items-center h-full"
       style="scroll-snap-type: x mandatory; scrollbar-width: none;">
     <style>
       .scroll-x::-webkit-scrollbar { display: none; }
@@ -552,7 +550,7 @@
   </div>
 
   <!-- TABLET & MOBILE: Lightbox ảnh không scroll -->
-  <div class="lg:hidden flex flex-col items-center gap-3 px-4 pt-10 overflow-y-auto"
+  <div class="lg:hidden flex flex-col items-center gap-5 px-4 py-10 pt-10 overflow-y-auto"
       style="scrollbar-width: none;">
     <style>
       .lg\:hidden::-webkit-scrollbar { display: none; }
