@@ -29,6 +29,24 @@
   z-index: 9999;
 }
 
+/* Ẩn scrollbar trên tất cả trình duyệt & thiết bị */
+
+/* Chrome, Safari, Edge (desktop + mobile) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+html, body {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE 10+ */
+}
+
+/* iOS Safari scroll container (trường hợp hiếm) */
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow: -moz-scrollbars-none;
+}
   </style>
 </head>
 <body class="flex flex-col md:flex-row">
