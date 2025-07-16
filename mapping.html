@@ -74,6 +74,11 @@
   z-index: 9999;
 }
 
+  .scroll-lock {
+    position: fixed !important;
+    width: 100%;
+    overflow: hidden !important;
+  }
   </style>
 </head>
 <body class="flex flex-col md:flex-row">
@@ -278,22 +283,21 @@ let scrollPosition = 0;
 
 function lockBodyScroll() {
   scrollPosition = window.scrollY || window.pageYOffset;
-  document.body.classList.add('overflow-hidden');
-  document.body.style.position = 'fixed';
+
+  // Thêm class lock + giữ vị trí
+  document.body.classList.add('scroll-lock');
   document.body.style.top = `-${scrollPosition}px`;
-  document.body.style.width = '100%';
 }
 
 function unlockBodyScroll() {
-  document.body.classList.remove('overflow-hidden');
-  document.body.style.position = '';
+  // Xoá lock và reset top
+  document.body.classList.remove('scroll-lock');
   document.body.style.top = '';
-  document.body.style.width = '';
 
-  requestAnimationFrame(() => {
-    window.scrollTo(0, scrollPosition);
-  });
+  // Scroll lại đúng vị trí
+  window.scrollTo(0, scrollPosition);
 }
+
 
 </script>
 </body>
