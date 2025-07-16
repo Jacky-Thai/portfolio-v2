@@ -156,6 +156,11 @@
   cursor: grabbing;
 }
 
+.gallery-modal,
+.lightbox {
+  overscroll-behavior: contain;
+}
+
   </style>
 </head>
 <body class="flex flex-col md:flex-row">
@@ -873,6 +878,24 @@ function handleLightboxImageLoaded() {
   img.classList.add('opacity-100');
   if (spinner) spinner.style.display = 'none';
 }
+
+  // Chặn scroll ngoài modal khi modal đang active
+function preventScrollOutsideModal(e) {
+  const isLightboxOpen = document.getElementById('lightbox')?.classList.contains('active');
+  const isAnyModalOpen = document.querySelector('.gallery-modal.active');
+
+  // Nếu không mở lightbox hoặc modal → không làm gì
+  if (!isLightboxOpen && !isAnyModalOpen) return;
+
+  const scrollableInsideModal = e.target.closest('.content-scroll, .scroll-x');
+
+  // Nếu không phải vùng scroll bên trong modal → ngăn scroll
+  if (!scrollableInsideModal) {
+    e.preventDefault();
+  }
+}
+
+document.addEventListener('touchmove', preventScrollOutsideModal, { passive: false });
 
 </script>
 
