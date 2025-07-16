@@ -286,21 +286,10 @@ function lockBodyScroll() {
 
 function unlockBodyScroll() {
   document.body.classList.remove('overflow-hidden');
-
-  // Lưu lại vị trí để khôi phục scroll
-  const y = scrollPosition;
-
-  // Reset styles
   document.body.style.position = '';
   document.body.style.top = '';
   document.body.style.width = '';
-
-  // Đợi DOM cập nhật rồi mới scrollTo lại
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      window.scrollTo(0, y);
-    });
-  });
+  window.scrollTo(0, scrollPosition);
 }
 
 </script>
