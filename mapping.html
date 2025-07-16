@@ -74,11 +74,6 @@
   z-index: 9999;
 }
 
-body.scroll-locked {
-  overflow: hidden;
-  touch-action: none;
-  overscroll-behavior: contain;
-}
   </style>
 </head>
 <body class="flex flex-col md:flex-row">
@@ -279,22 +274,22 @@ if ('scrollRestoration' in history) {
 }
 
 // Scroll lock helper
-let scrollY = 0;
+let scrollPosition = 0;
 
 function lockBodyScroll() {
-  scrollY = window.scrollY;
-  document.body.classList.add('scroll-locked');
-  document.body.style.top = `-${scrollY}px`;
+  scrollPosition = window.scrollY || window.pageYOffset;
+  document.body.classList.add('overflow-hidden');
   document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollPosition}px`;
   document.body.style.width = '100%';
 }
 
 function unlockBodyScroll() {
-  document.body.classList.remove('scroll-locked');
+  document.body.classList.remove('overflow-hidden');
   document.body.style.position = '';
   document.body.style.top = '';
   document.body.style.width = '';
-  window.scrollTo(0, scrollY);
+  window.scrollTo(0, scrollPosition);
 }
 
 </script>
